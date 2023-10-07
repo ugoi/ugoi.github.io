@@ -4,7 +4,7 @@ name: Deploy to GitHub Pages
 # Only trigger this script when you push to the master branch
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 # Specify the tasks to run when this script gets triggered
 jobs:
@@ -13,24 +13,24 @@ jobs:
 
     # Download our master branch
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'  # You can specify your desired Node.js version here
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20" # You can specify your desired Node.js version here
 
-    - name: Install dependencies
-      run: npm ci  # You can use `npm install` if you prefer
+      - name: Install dependencies
+        run: npm ci # You can use `npm install` if you prefer
 
-    - name: Deploy
-      run: |
-        git config --global user.name $user_name
-        git config --global user.email $user_email
-        git remote set-url origin https://${github_token}@github.com/${repository}
-        npm run deploy
-      env:
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions[bot]@users.noreply.github.com'
-        github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
-        repository: ${{ github.repository }}
+      - name: Deploy
+        run: |
+          git config --global user.name $user_name
+          git config --global user.email $user_email
+          git remote set-url origin https://${github_token}@github.com/${repository}
+          npm run deploy
+        env:
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
+          github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+          repository: ${{ github.repository }}
