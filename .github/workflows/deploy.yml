@@ -1,27 +1,20 @@
-name: Deploy to GitHub Pages
+# This script deploys your website automatically
+name: CI
 
+# Only trigger this script when you push to the master branch
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
+# Specify the tasks to run when this script gets triggered
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
+    # Download our master branch
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
-
-    - name: Install dependencies
-      run: npm i
-
-    - name: Deploy
+    # Run our deployment command
+    - name: Deploying the static website to gh-pages
       run: npm run deploy
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
