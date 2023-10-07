@@ -23,10 +23,14 @@ jobs:
     - name: Install dependencies
       run: npm ci  # You can use `npm install` if you prefer
 
-    # Run our deployment command
-    - name: Build and Deploy
+    - name: Deploy
       run: |
-        git config --global user.email 96357300+ugoi@users.noreply.github.com
-        git config --global user.name ${{env.MY_NAME}}
-        git remote set-url origin https://${{env.MY_NAME}}:${{ secrets.MY_PASSWORD }}@github.com/ugoi/your_repository.git
+        git config --global user.name $user_name
+        git config --global user.email $user_email
+        git remote set-url origin https://${github_token}@github.com/${repository}
         npm run deploy
+      env:
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+        repository: ${{ github.repository }}
