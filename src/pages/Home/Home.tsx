@@ -3,7 +3,6 @@ import { Container, Grid, Typography, Box } from "@mui/material";
 import homeLogo from "../../web-developer.svg";
 import Home2 from "./Home2";
 import Type from "./Type";
-import { WavingHandOutlined } from "@mui/icons-material";
 import { styled } from "@mui/system";
 import { useTheme } from "@mui/material/styles";
 
