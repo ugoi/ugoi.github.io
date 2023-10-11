@@ -1,36 +1,58 @@
-import { Container, Grid, Typography, Avatar } from "@mui/material";
-import profilePicture from "../../profile.jpg";
+import React from "react";
+import { Container, Grid, Typography, Box } from "@mui/material";
+import homeLogo from "../../web-developer.svg";
+import Home2 from "./Home2";
+import Type from "./Type";
+import { WavingHandOutlined } from "@mui/icons-material";
+import { styled } from "@mui/system";
+import { useTheme } from "@mui/material/styles";
 
-function Home() {
+const Home: React.FC = () => {
+  const theme = useTheme();
+
+  const StyledTypeWriter = styled("div")({
+    ...theme.typography.h4, // Spread the h1 styles onto this component
+    color: "silver",
+    textAlign: "left",
+  });
+
   return (
-    <Container>
-      <Grid container spacing={3} style={{ marginTop: "2em" }}>
-        <Grid item xs={12} md={4}>
-          <Avatar
-            src={profilePicture}
-            alt="Your Name"
-            style={{
-              width: "100%",
-              height: "auto",
-              marginBottom: "1em",
-              borderRadius: 9, // Make the avatar square
-            }}
-          />
-        </Grid>
-        <Grid item xs={12} md={8}>
-          <Typography variant="h4" gutterBottom>
-            Developer Stefan
-          </Typography>
-          <Typography variant="body1" paragraph>
-            Welcome to my website! I'm Stefan, a passionate developer with a
-            knack for creating innovative solutions. Dive into my portfolio to
-            explore my past projects or get in touch with me directly through
-            the contact page. Excited to connect with you!
-          </Typography>
-        </Grid>
-      </Grid>
-    </Container>
+    <Box>
+      <Box
+        style={{
+          height: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "top",
+        }}
+      >
+        <Container maxWidth="lg">
+          <Grid container spacing={3} alignItems="center">
+            <Grid item md={7}>
+              <Typography variant="h3" textAlign="left" gutterBottom>
+                Hi There!{" "}
+                <span role="img" aria-label="wave">
+                  👋🏻
+                </span>
+              </Typography>
+              <Typography variant="h4" textAlign="left">
+                I'm <span style={{ fontWeight: "bold" }}>Stefan Dukic</span>
+              </Typography>
+              <Box mt={3}>
+                <StyledTypeWriter>
+                  <Type />
+                </StyledTypeWriter>
+              </Box>
+            </Grid>
+            <Grid item md={5}>
+              <img src={homeLogo} alt="home" style={{ maxHeight: "80vh" }} />
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+      <Home2 />
+    </Box>
   );
-}
+};
 
 export default Home;

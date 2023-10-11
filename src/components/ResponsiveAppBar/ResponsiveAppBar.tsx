@@ -58,7 +58,7 @@ function ResponsiveAppBar({ routes, logo }: ResponsiveAppBarProps) {
               textDecoration: "none",
             }}
           >
-            Stefan
+            Sd.
           </Typography>
 
           <Typography
@@ -77,7 +77,7 @@ function ResponsiveAppBar({ routes, logo }: ResponsiveAppBarProps) {
               textDecoration: "none",
             }}
           >
-            STEFAN DUKIC
+            Sd.
           </Typography>
           <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
             {routes.map((route) => (
