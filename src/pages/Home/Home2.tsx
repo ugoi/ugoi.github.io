@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Container,
   Grid,
   Typography,
   Box,
@@ -20,17 +19,26 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const Home2: React.FC = () => {
   return (
-    <Container
-      maxWidth="lg"
-      style={{ padding: "2rem 0", height: "100vh" }}
-      id="about"
-    >
+    <Box style={{ height: "100vh" }}>
       <Grid container spacing={3} alignItems="center">
-        <Grid item md={8}>
+        <Grid item md={8} xs={12}>
           <Typography variant="h3" color="silver" gutterBottom>
-            Let me introduce myself 🌟
+            <Typography
+              variant="h3"
+              color="silver"
+              gutterBottom
+              sx={{
+                mx: { xs: 3, md: 0 },
+              }}
+            >
+              Let me introduce myself 🌟
+            </Typography>
           </Typography>
-          <Typography variant="body1" textAlign="left" paragraph>
+          <Typography
+            variant="body1"
+            sx={{ textAlign: { xs: "center", md: "left" } }}
+            paragraph
+          >
             Studied at <strong>42 School</strong> 🎓, embracing a peer-to-peer
             learning approach. Specialized in Full-Stack and C++ Development 💻.
             Currently a Mulesoft Integration Architect and API Developer at{" "}
@@ -79,39 +87,18 @@ const Home2: React.FC = () => {
               <TerminalIcon />
             </a>
           </Stack>
-
-          <Box mt={4}>
-            <Typography variant="h4" color="silver">
-              Connect
-            </Typography>
-          </Box>
-
-          <Box alignItems="center" gap={2} mt={0}>
-            <IconButton
-              href="https://github.com/ugoi"
-              target="_blank"
-              rel="noreferrer"
-              color="primary"
-            >
-              <LinkedInIcon fontSize="large" />
-            </IconButton>
-
-            <IconButton
-              href="https://github.com/ugoi"
-              target="_blank"
-              rel="noreferrer"
-              color="primary"
-            >
-              <GitHubIcon fontSize="large" />
-            </IconButton>
-          </Box>
         </Grid>
-        <Grid item md={4}>
+        <Grid
+          item
+          md={4}
+          xs={12}
+          style={{ display: "flex", justifyContent: "center" }}
+        >
           <Avatar
             src={profilePicture}
             alt="Your Name"
             style={{
-              width: "100%",
+              width: "240px",
               height: "auto",
               marginBottom: "1em",
               borderRadius: 100, // Make the avatar square
@@ -119,7 +106,34 @@ const Home2: React.FC = () => {
           />
         </Grid>
       </Grid>
-    </Container>
+      <Box mt={0}>
+        <Box>
+          <Typography variant="h3" color="silver">
+            Connect
+          </Typography>
+        </Box>
+
+        <Box alignItems="center" gap={2} mt={0}>
+          <IconButton
+            href="https://github.com/ugoi"
+            target="_blank"
+            rel="noreferrer"
+            color="primary"
+          >
+            <LinkedInIcon fontSize="large" />
+          </IconButton>
+
+          <IconButton
+            href="https://github.com/ugoi"
+            target="_blank"
+            rel="noreferrer"
+            color="primary"
+          >
+            <GitHubIcon fontSize="large" />
+          </IconButton>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

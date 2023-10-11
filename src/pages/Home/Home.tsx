@@ -10,47 +10,53 @@ const Home: React.FC = () => {
   const theme = useTheme();
 
   const StyledTypeWriter = styled("div")({
-    ...theme.typography.h4, // Spread the h1 styles onto this component
+    ...theme.typography.h3, // Spread the h1 styles onto this component
     color: "silver",
-    textAlign: "left",
   });
 
   return (
-    <Box>
-      <Box
-        style={{
-          height: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "top",
-        }}
-      >
-        <Container maxWidth="lg">
-          <Grid container spacing={3} alignItems="center">
-            <Grid item md={7}>
-              <Typography variant="h3" textAlign="left" gutterBottom>
-                Hi There!{" "}
-                <span role="img" aria-label="wave">
-                  👋🏻
-                </span>
-              </Typography>
-              <Typography variant="h4" textAlign="left">
-                I'm <span style={{ fontWeight: "bold" }}>Stefan Dukic</span>
-              </Typography>
-              <Box mt={3}>
-                <StyledTypeWriter>
-                  <Type />
-                </StyledTypeWriter>
-              </Box>
+    <Container maxWidth="lg">
+      <Box>
+        <Box
+          style={{
+            height: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "top",
+          }}
+        >
+          <Container maxWidth="lg">
+            <Grid container spacing={3} alignItems="center" mt={3}>
+              <Grid
+                item
+                md={7}
+                xs={12}
+                sx={{ textAlign: { xs: "center", md: "left" } }}
+              >
+                <Typography variant="h3" gutterBottom>
+                  Hi There!{" "}
+                  <span role="img" aria-label="wave">
+                    👋🏻
+                  </span>
+                </Typography>
+                <Typography variant="h2">
+                  I'm <span style={{ fontWeight: "bold" }}>Stefan Dukic</span>
+                </Typography>
+                <Box mt={3}>
+                  <StyledTypeWriter>
+                    <Type />
+                  </StyledTypeWriter>
+                </Box>
+              </Grid>
+              <Grid item md={5} xs={12} sx={{ mt: { xs: 9, md: 0 } }}>
+                <img src={homeLogo} alt="home" style={{ maxHeight: "300px" }} />
+              </Grid>
             </Grid>
-            <Grid item md={5}>
-              <img src={homeLogo} alt="home" style={{ maxHeight: "80vh" }} />
-            </Grid>
-          </Grid>
-        </Container>
+          </Container>
+        </Box>
+        <Home2 />
       </Box>
-      <Home2 />
-    </Box>
+    </Container>
   );
 };
 
