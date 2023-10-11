@@ -11,8 +11,8 @@ const Home: React.FC = () => {
 
   const StyledTypeWriter = styled("div")({
     ...theme.typography.h3,
-    [theme.breakpoints.down('sm')]: {
-      ...theme.typography.h4,
+    [theme.breakpoints.down("sm")]: {
+      ...theme.typography.h5,
     },
     color: "silver",
   });
@@ -36,13 +36,16 @@ const Home: React.FC = () => {
                 xs={12}
                 sx={{ textAlign: { xs: "center", md: "left" } }}
               >
-                <Typography variant="h3" gutterBottom>
+                <Typography
+                  sx={{ typography: { xs: "h4", md: "h3" } }}
+                  gutterBottom
+                >
                   Hi There!{" "}
                   <span role="img" aria-label="wave">
                     👋🏻
                   </span>
                 </Typography>
-                <Typography variant="h3">
+                <Typography sx={{ typography: { xs: "h4", md: "h3" } }}>
                   I'm <span style={{ fontWeight: "bold" }}>Stefan Dukic</span>
                 </Typography>
                 <Box mt={3}>

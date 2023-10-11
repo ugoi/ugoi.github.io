@@ -24,11 +24,11 @@ const Home2: React.FC = () => {
         <Grid item md={8} xs={12}>
           <Typography variant="h3" color="silver" gutterBottom>
             <Typography
-              variant="h3"
               color="silver"
               gutterBottom
               sx={{
                 mx: { xs: 3, md: 0 },
+                typography: { xs: "h4", md: "h3" },
               }}
             >
               Let me introduce myself 🌟
@@ -108,7 +108,7 @@ const Home2: React.FC = () => {
       </Grid>
       <Box mt={0}>
         <Box>
-          <Typography variant="h3" color="silver">
+          <Typography sx={{ typography: { xs: "h4", md: "h3" },}} color="silver">
             Connect
           </Typography>
         </Box>
