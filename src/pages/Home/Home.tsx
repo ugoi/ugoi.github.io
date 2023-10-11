@@ -10,9 +10,11 @@ const Home: React.FC = () => {
   const theme = useTheme();
 
   const StyledTypeWriter = styled("div")({
-    ...theme.typography.h3, // Spread the h1 styles onto this component
+    ...theme.typography.h3,
+    [theme.breakpoints.down('sm')]: {
+      ...theme.typography.h4,
+    },
     color: "silver",
-    minHeight: "150px",
   });
 
   return (
@@ -40,7 +42,7 @@ const Home: React.FC = () => {
                     👋🏻
                   </span>
                 </Typography>
-                <Typography variant="h2">
+                <Typography variant="h3">
                   I'm <span style={{ fontWeight: "bold" }}>Stefan Dukic</span>
                 </Typography>
                 <Box mt={3}>
@@ -49,7 +51,7 @@ const Home: React.FC = () => {
                   </StyledTypeWriter>
                 </Box>
               </Grid>
-              <Grid item md={5} xs={12} sx={{ mt: { xs: 0, md: 0 } }}>
+              <Grid item md={5} xs={12} sx={{ mt: { xs: 3, md: 0 } }}>
                 <img src={homeLogo} alt="home" style={{ maxHeight: "300px" }} />
               </Grid>
             </Grid>
