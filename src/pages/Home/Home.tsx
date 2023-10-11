@@ -12,6 +12,7 @@ const Home: React.FC = () => {
   const StyledTypeWriter = styled("div")({
     ...theme.typography.h3, // Spread the h1 styles onto this component
     color: "silver",
+    minHeight: "150px",
   });
 
   return (
@@ -48,7 +49,7 @@ const Home: React.FC = () => {
                   </StyledTypeWriter>
                 </Box>
               </Grid>
-              <Grid item md={5} xs={12} sx={{ mt: { xs: 9, md: 0 } }}>
+              <Grid item md={5} xs={12} sx={{ mt: { xs: 0, md: 0 } }}>
                 <img src={homeLogo} alt="home" style={{ maxHeight: "300px" }} />
               </Grid>
             </Grid>
