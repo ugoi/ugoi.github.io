@@ -108,7 +108,10 @@ const Home2: React.FC = () => {
       </Grid>
       <Box mt={0}>
         <Box>
-          <Typography sx={{ typography: { xs: "h4", md: "h3" },}} color="silver">
+          <Typography
+            sx={{ typography: { xs: "h4", md: "h3" } }}
+            color="silver"
+          >
             Connect
           </Typography>
         </Box>

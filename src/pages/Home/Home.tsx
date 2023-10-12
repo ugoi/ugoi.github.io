@@ -11,57 +11,63 @@ const Home: React.FC = () => {
 
   const StyledTypeWriter = styled("div")({
     ...theme.typography.h3,
+    [theme.breakpoints.down("md")]: {
+      ...theme.typography.h3, // iPad and similar sized devices
+    },
+
     [theme.breakpoints.down("sm")]: {
-      ...theme.typography.h5,
+      ...theme.typography.h4, // iPhones and similar sized devices
+    },
+
+    [theme.breakpoints.down("xs")]: {
+      ...theme.typography.h4, // smaller sized devices
     },
     color: "silver",
+    height: "100px",
   });
 
   return (
     <Container maxWidth="lg">
-      <Box>
-        <Box
-          style={{
-            height: "100vh",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "top",
-          }}
-        >
-          <Container maxWidth="lg">
-            <Grid container spacing={3} alignItems="center" mt={3}>
-              <Grid
-                item
-                md={7}
-                xs={12}
-                sx={{ textAlign: { xs: "center", md: "left" } }}
-              >
-                <Typography
-                  sx={{ typography: { xs: "h4", md: "h3" } }}
-                  gutterBottom
-                >
-                  Hi There!{" "}
-                  <span role="img" aria-label="wave">
-                    👋🏻
-                  </span>
-                </Typography>
-                <Typography sx={{ typography: { xs: "h4", md: "h3" } }}>
-                  I'm <span style={{ fontWeight: "bold" }}>Stefan Dukic</span>
-                </Typography>
-                <Box mt={3}>
-                  <StyledTypeWriter>
-                    <Type />
-                  </StyledTypeWriter>
-                </Box>
-              </Grid>
-              <Grid item md={5} xs={12} sx={{ mt: { xs: 3, md: 0 } }}>
-                <img src={homeLogo} alt="home" style={{ maxHeight: "300px" }} />
-              </Grid>
-            </Grid>
-          </Container>
-        </Box>
-        <Home2 />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "top",
+          minHeight: "100vh",
+          mb: 9,
+        }}
+      >
+        <Grid container spacing={3} alignItems="center" mt={3}>
+          <Grid
+            item
+            md={7}
+            xs={12}
+            sx={{ textAlign: { xs: "center", md: "left" } }}
+          >
+            <Typography
+              sx={{ typography: { xs: "h4", sm: "h3" } }}
+              gutterBottom
+            >
+              Hi There!{" "}
+              <span role="img" aria-label="wave">
+                👋🏻
+              </span>
+            </Typography>
+            <Typography sx={{ typography: { xs: "h4", sm: "h3" } }}>
+              I'm <span style={{ fontWeight: "bold" }}>Stefan Dukic</span>
+            </Typography>
+            <Box mt={3}>
+              <StyledTypeWriter>
+                <Type />
+              </StyledTypeWriter>
+            </Box>
+          </Grid>
+          <Grid item md={5} xs={12}>
+            <img src={homeLogo} alt="home" style={{ maxHeight: "300px" }} />
+          </Grid>
+        </Grid>
       </Box>
+      <Home2 />
     </Container>
   );
 };
