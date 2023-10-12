@@ -29,5 +29,3 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      # ... (rest of your deployment steps)
