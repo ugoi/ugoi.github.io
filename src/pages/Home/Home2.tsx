@@ -19,30 +19,49 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const Home2: React.FC = () => {
   return (
-    <Box style={{ height: "100vh" }}>
+    <Box>
       <Grid container spacing={3} alignItems="center">
         <Grid item md={8} xs={12}>
-          <Typography variant="h3" color="silver" gutterBottom>
-            <Typography
-              color="silver"
-              gutterBottom
-              sx={{
-                mx: { xs: 3, md: 0 },
-                typography: { xs: "h4", md: "h3" },
-              }}
-            >
-              Let me introduce myself 🌟
-            </Typography>
-          </Typography>
           <Typography
-            variant="body1"
+            gutterBottom
+            sx={{
+              mx: { xs: 3, md: 0 },
+              typography: { xs: "h4", md: "h3" },
+            }}
+          >
+            Let me introduce myself
+          </Typography>
+
+          <Typography
+            variant="h6"
             sx={{ textAlign: { xs: "center", md: "left" } }}
             paragraph
           >
-            Studied at <strong>42 School</strong> 🎓, embracing a peer-to-peer
-            learning approach. Specialized in Full-Stack and C++ Development 💻.
-            Currently a Mulesoft Integration Architect and API Developer at{" "}
-            <strong>Audi</strong> 🚗.
+            A Data Engineer from <strong>42 Heilbronn</strong>, I've delved deep
+            into C, C++, and TypeScript. My recent endeavors involve real-time
+            data processing in web apps and exploring the realm of Web3.
+          </Typography>
+
+          <Typography
+            variant="h6"
+            sx={{ textAlign: { xs: "center", md: "left" } }}
+            paragraph
+          >
+            My toolkit includes SQL, Python, Docker, and more. Passionate and
+            ever-curious, I'm shaping the tech future with innovative projects
+            and collaborations.
+          </Typography>
+
+          <Typography
+            variant="h6"
+            sx={{ textAlign: { xs: "center", md: "left" } }}
+            paragraph
+          >
+            Beyond the tech stack, I believe in the power of continuous learning
+            and collaboration. Currently contributing to a startup in the Web3
+            sector, I'm excited about the transformative potential of
+            decentralized technologies and eager to drive change in the tech
+            landscape.
           </Typography>
 
           <Stack
@@ -51,7 +70,7 @@ const Home2: React.FC = () => {
             gap={1}
             justifyContent="center"
           >
-            <Typography variant="body1">My skills are:</Typography>
+            <Typography variant="h6">Key Skills:</Typography>
             <a
               href="https://www.cplusplus.com/"
               target="_blank"
@@ -106,7 +125,7 @@ const Home2: React.FC = () => {
           />
         </Grid>
       </Grid>
-      <Box mt={0}>
+      <Box my={12}>
         <Box>
           <Typography
             sx={{ typography: { xs: "h4", md: "h3" } }}
