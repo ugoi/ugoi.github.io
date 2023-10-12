@@ -34,7 +34,7 @@ const Home: React.FC = () => {
           flexDirection: "column",
           justifyContent: "top",
           minHeight: "100vh",
-          mb: 9,
+          my: 9,
         }}
       >
         <Grid container spacing={3} alignItems="center" mt={3}>
