@@ -5,20 +5,24 @@ import "./App.css";
 import ResponsiveAppBar from "./components/ResponsiveAppBar/ResponsiveAppBar";
 import routes from "./routesConfig";
 import Home from "./pages/Home/Home";
-
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-    primary: {
-      main: "#1976d2",
-    },
-  },
-});
+import { CssBaseline, useMediaQuery } from "@mui/material";
 
 function App() {
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: prefersDarkMode ? "dark" : "light",
+        },
+      }),
+    [prefersDarkMode],
+  );
   return (
     <div className="App">
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
         <Router>
           <ResponsiveAppBar
             routes={routes}
