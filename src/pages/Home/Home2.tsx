@@ -137,7 +137,7 @@ const Home2: React.FC = () => {
 
         <Box alignItems="center" gap={2} mt={0}>
           <IconButton
-            href="https://github.com/ugoi"
+            href="https://www.linkedin.com/in/stefan-dukic-68682b20b/"
             target="_blank"
             rel="noreferrer"
             color="primary"

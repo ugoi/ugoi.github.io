@@ -12,12 +12,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1  # Only fetch the latest commit
+          fetch-depth: 1 # Only fetch the latest commit
 
       - name: Cache Node Modules
         uses: actions/cache@v3
         with:
-          path: ~/.npm  # Path to npm cache
+          path: ~/.npm # Path to npm cache
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
