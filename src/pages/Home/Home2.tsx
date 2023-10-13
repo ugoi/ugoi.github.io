@@ -7,7 +7,7 @@ import {
   Stack,
   IconButton,
 } from "@mui/material";
-import profilePicture from "../../profile.jpg";
+import profilePicture from "../../Assets/profile.jpg";
 import Python from "../../components/Icons/Python";
 import CPP from "../../components/Icons/CPP";
 import TerminalIcon from "@mui/icons-material/Terminal";

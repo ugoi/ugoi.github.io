@@ -6,7 +6,6 @@ import {
   CardContent,
   Typography,
   CardActions,
-  Button,
   IconButton,
   Container,
 } from "@mui/material";
@@ -58,18 +57,20 @@ const Portfolio: React.FC = () => {
                     GitHub
                   </Typography>
                 </IconButton>
-                <IconButton
-                  edge="start"
-                  color="inherit"
-                  href={project.deployedLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <WebIcon sx={{ mr: 1 }} />
-                  <Typography variant="body2" component="span">
-                    View Deployed
-                  </Typography>
-                </IconButton>
+                {project.deployedLink && (
+                  <IconButton
+                    edge="start"
+                    color="inherit"
+                    href={project.deployedLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <WebIcon sx={{ mr: 1 }} />
+                    <Typography variant="body2" component="span">
+                      View Deployed
+                    </Typography>
+                  </IconButton>
+                )}
               </CardActions>
             </Card>
           </Grid>

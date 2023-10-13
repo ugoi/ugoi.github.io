@@ -1,4 +1,6 @@
-import portfolio from "../../ugoi_page.png";
+import portfolio from "../../Assets/ugoi_page.png";
+import transcendence_dark from "../../Assets/ft_transcendence_dark.png"
+import irc_dark from "../../Assets/irc-dark.png"
 
 const projects = [
   {
@@ -9,18 +11,16 @@ const projects = [
     deployedLink: "https://ugoi.vercel.app/",
   },
   {
-    title: "Project 2",
-    description: "This is the description for project 2.",
-    imageUrl: "/path/to/image2.jpg",
-    githubLink: "https://github.com/project2",
-    deployedLink: "https://project2.com",
+    title: "Ft_Transcendence",
+    description: "Website with multiplayer game and chat.",
+    imageUrl: transcendence_dark,
+    githubLink: "https://github.com/FVNRLS/ft_transcendence",
   },
   {
-    title: "Project 2",
-    description: "This is the description for project 2.",
-    imageUrl: "/path/to/image2.jpg",
-    githubLink: "https://github.com/project2",
-    deployedLink: "https://project2.com",
+    title: "Ft_Irc",
+    description: "Irc Server written in C++",
+    imageUrl: irc_dark,
+    githubLink: "https://github.com/Qfinel/42School_ft_irc",
   },
 ];
 
