@@ -25,6 +25,7 @@ function App() {
         <CssBaseline />
         <Router>
           <ResponsiveAppBar
+            data-testid="responsive-app-bar"
             routes={routes}
             logo={{ name: "Stefan", path: "/" }}
           />

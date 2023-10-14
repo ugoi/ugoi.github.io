@@ -49,7 +49,7 @@ interface ResponsiveAppBarProps {
   };
 }
 
-function ResponsiveAppBar({ routes, logo }: ResponsiveAppBarProps) {
+function ResponsiveAppBar({ routes, logo, ...props }: ResponsiveAppBarProps) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
@@ -65,7 +65,7 @@ function ResponsiveAppBar({ routes, logo }: ResponsiveAppBarProps) {
   const rootPath = logo.path;
 
   return (
-    <React.Fragment>
+    <div {...props}>
       <HideOnScroll>
         <AppBar>
           <Container maxWidth="xl">
@@ -167,7 +167,7 @@ function ResponsiveAppBar({ routes, logo }: ResponsiveAppBarProps) {
         </AppBar>
       </HideOnScroll>
       <Toolbar />
-    </React.Fragment>
+    </div>
   );
 }
 export default ResponsiveAppBar;

@@ -1,6 +1,6 @@
 import portfolio from "../../Assets/ugoi_page.png";
-import transcendence_dark from "../../Assets/ft_transcendence_dark.png"
-import irc_dark from "../../Assets/irc-dark.png"
+import transcendence_dark from "../../Assets/ft_transcendence_dark.png";
+import irc_dark from "../../Assets/irc-dark.png";
 
 const projects = [
   {
