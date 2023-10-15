@@ -41,15 +41,12 @@ interface ResponsiveAppBarProps {
   routes: {
     name: string;
     path: string;
-    component: string;
+    component?: string;
+    isLogo?: boolean;
   }[];
-  logo: {
-    name: string;
-    path: string;
-  };
 }
 
-function ResponsiveAppBar({ routes, logo, ...props }: ResponsiveAppBarProps) {
+function ResponsiveAppBar({ routes, ...props }: ResponsiveAppBarProps) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
@@ -62,15 +59,20 @@ function ResponsiveAppBar({ routes, logo, ...props }: ResponsiveAppBarProps) {
     setAnchorElNav(null);
   };
 
-  const rootPath = logo.path;
+  const logoRoute = routes.find((route) => route.isLogo);
+  const rootPath = logoRoute ? logoRoute.path : "/"; // defaulting to '/' if no logo route is found
+  const testIdLogo = logoRoute
+    ? `${logoRoute.name.toLowerCase()}-button`
+    : "home-button"; // Generating the testId from the logoRoute
 
   return (
-    <div {...props}>
+    <div data-testid="responsive-app-bar" {...props}>
       <HideOnScroll>
         <AppBar>
           <Container maxWidth="xl">
             <Toolbar disableGutters>
               <Typography
+                data-testid={testIdLogo}
                 variant="h6"
                 noWrap
                 component={Link} // Use Link component
@@ -108,17 +110,20 @@ function ResponsiveAppBar({ routes, logo, ...props }: ResponsiveAppBarProps) {
                 Sd.
               </Typography>
               <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
-                {routes.map((route) => (
-                  <Button
-                    key={route.path}
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                    component={Link}
-                    to={route.path}
-                  >
-                    {route.name}
-                  </Button>
-                ))}
+                {routes
+                  .filter((route) => !route.isLogo)
+                  .map((route) => (
+                    <Button
+                      data-testid={`${route.name.toLowerCase()}-button`}
+                      key={route.path}
+                      onClick={handleCloseNavMenu}
+                      sx={{ my: 2, color: "white", display: "block" }}
+                      component={Link}
+                      to={route.path}
+                    >
+                      {route.name}
+                    </Button>
+                  ))}
               </Box>
 
               <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
@@ -150,16 +155,18 @@ function ResponsiveAppBar({ routes, logo, ...props }: ResponsiveAppBarProps) {
                     display: { xs: "block", md: "none" },
                   }}
                 >
-                  {routes.map((route) => (
-                    <MenuItem
-                      key={route.path}
-                      onClick={handleCloseNavMenu}
-                      component={Link}
-                      to={route.path}
-                    >
-                      <Typography textAlign="center">{route.name}</Typography>
-                    </MenuItem>
-                  ))}
+                  {routes
+                    .filter((route) => !route.isLogo)
+                    .map((route) => (
+                      <MenuItem
+                        key={route.path}
+                        onClick={handleCloseNavMenu}
+                        component={Link}
+                        to={route.path}
+                      >
+                        <Typography textAlign="center">{route.name}</Typography>
+                      </MenuItem>
+                    ))}
                 </Menu>
               </Box>
             </Toolbar>

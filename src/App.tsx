@@ -24,11 +24,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Router>
-          <ResponsiveAppBar
-            data-testid="responsive-app-bar"
-            routes={routes}
-            logo={{ name: "Stefan", path: "/" }}
-          />
+          <ResponsiveAppBar data-testid="responsive-app-bar" routes={routes} />
           <Routes>
             <Route path="/" element={<Home />} />
             {routes.map((route) => (
@@ -36,8 +32,7 @@ function App() {
                 key={route.path}
                 path={route.path}
                 element={React.createElement(
-                  require(`./pages/${route.component}/${route.component}`)
-                    .default,
+                  require(`./pages/${route.name}/${route.name}`).default,
                 )}
               />
             ))}
