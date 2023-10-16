@@ -106,4 +106,23 @@ describe("ResponsiveAppBar Component", () => {
     const defaultLogoButton = screen.getByTestId("home-button");
     expect(defaultLogoButton).toBeInTheDocument();
   });
+
+  test("Opening the menu sets the anchor element", async () => {
+    render(
+      <MemoryRouter>
+        <ResponsiveAppBar routes={routes} />
+      </MemoryRouter>,
+    );
+
+    const iconButton = screen.getByTestId("icon-button-xs");
+
+    // Ensure button is visible and clickable
+    expect(iconButton).toBeVisible();
+
+    await userEvent.click(iconButton);
+
+    // Let's wait for the menu to appear after the click
+    const menuAppBar = await screen.findByTestId("menu-appbar");
+    expect(menuAppBar).toBeInTheDocument();
+  });
 });
