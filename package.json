@@ -3,6 +3,25 @@
   "name": "ugoi.github.io",
   "version": "0.1.9",
   "private": true,
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/src/reportWebVitals.ts",
+      "!<rootDir>/src/react-app-env.d.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": [
+      "text"
+    ]
+  },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -24,7 +43,7 @@
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watchAll=false --detectOpenHandles",
+    "test": "react-scripts test --watchAll=false --detectOpenHandles --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -50,8 +69,10 @@
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.5.1",
+    "@types/css-mediaquery": "^0.1.2",
     "@types/jest": "^29.5.5",
     "@types/react-router-dom": "^5.3.3",
+    "css-mediaquery": "^0.1.2",
     "gh-pages": "^6.0.0",
     "prettier": "3.0.3",
     "react-scripts": "^5.0.1"

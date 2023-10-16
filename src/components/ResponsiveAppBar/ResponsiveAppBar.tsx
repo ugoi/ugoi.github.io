@@ -126,10 +126,14 @@ function ResponsiveAppBar({ routes, ...props }: ResponsiveAppBarProps) {
                   ))}
               </Box>
 
-              <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
+              <Box
+                sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}
+                data-testid="menu-box-xs"
+              >
                 <IconButton
+                  data-testid="icon-button-xs"
                   size="large"
-                  aria-label="account of current user"
+                  aria-label="app bar drop down"
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
                   onClick={handleOpenNavMenu}
@@ -139,6 +143,7 @@ function ResponsiveAppBar({ routes, ...props }: ResponsiveAppBarProps) {
                 </IconButton>
                 <Menu
                   id="menu-appbar"
+                  data-testid="menu-appbar"
                   anchorEl={anchorElNav}
                   anchorOrigin={{
                     vertical: "bottom",
