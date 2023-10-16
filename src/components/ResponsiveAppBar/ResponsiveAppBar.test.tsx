@@ -2,22 +2,8 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import ResponsiveAppBar from "./ResponsiveAppBar";
 import userEvent from "@testing-library/user-event";
-import mediaQuery from "css-mediaquery";
-
-function createMatchMedia(width) {
-  return (query) => ({
-    matches: mediaQuery.match(query, {
-      width,
-    }),
-    addListener: () => {},
-    removeListener: () => {},
-  });
-}
 
 describe("ResponsiveAppBar Component", () => {
-  beforeAll(() => {
-    window.matchMedia = createMatchMedia(window.innerWidth);
-  });
   const routes = [
     {
       name: "Home",
@@ -120,80 +106,4 @@ describe("ResponsiveAppBar Component", () => {
     const defaultLogoButton = screen.getByTestId("home-button");
     expect(defaultLogoButton).toBeInTheDocument();
   });
-
-  // test("Clicking on the MenuIcon button opens the navigation menu", () => {
-  //   // Set to mobile view
-  //   // Change the viewport to 500px.
-  //   global.innerWidth = 2000;
-  //   // Trigger the window resize event.
-  //   global.dispatchEvent(new Event("resize"));
-
-  //   render(
-  //     <MemoryRouter>
-  //       <ResponsiveAppBar routes={routes} />
-  //     </MemoryRouter>,
-  //   );
-  //   const menuButton = screen.getByTestId("menu-box-xs");
-
-  //   expect(menuButton).not.toBeVisible();
-  //   userEvent.click(menuButton);
-  //   // const menu = screen.getByTestId("menu-appbar");
-  //   // expect(menu).toBeVisible();
-  // });
-
-  // test("menu-box-xs is visible in mobile view", () => {
-  //   // Simulate mobile view
-  //   window.matchMedia = createMatchMedia(500);
-  //   console.log("uhiuhuihdgdigdigjiodjgiojgdiojgiodjfgiodjfiogjdfigjdiojgoi")
-  //   console.log(window.matchMedia("(min-width: 600px)").matches);
-
-  //   render(
-  //     <MemoryRouter>
-  //       <ResponsiveAppBar routes={routes} />
-  //     </MemoryRouter>,
-  //   );
-  //   const menuButton = screen.getByTestId("menu-box-xs");
-  //   expect(menuButton).toBeVisible();
-  // });
-
-  // test("Clicking on a menu item closes the navigation menu", () => {
-  //   render(
-  //     <MemoryRouter>
-  //       <ResponsiveAppBar routes={routes} />
-  //     </MemoryRouter>,
-  //   );
-
-  //   // Click the MenuIcon to open the dropdown menu
-  //   const menuButton = screen.getByRole("button", {
-  //     name: /app bar drop down/i,
-  //   });
-  //   userEvent.click(menuButton);
-
-  //   // Check if a menu item is visible, ensuring the menu is open
-  //   const menuItem = screen.getByTestId("portfolio-button");
-  //   expect(menuItem).toBeInTheDocument();
-
-  //   // Click the menu item
-  //   userEvent.click(menuItem);
-
-  //   // Check if the menu item is no longer visible, ensuring the menu is closed
-  //   expect(menuItem).not.toBeInTheDocument();
-  // });
-
-  // it("renders correctly on mobiles screens", () => {
-  //   // Set the screen size to a smaller value
-  //   window.matchMedia = "2000";
-
-  //   // Render the component
-  //   render(
-  //     <MemoryRouter>
-  //       <ResponsiveAppBar routes={routes} />
-  //     </MemoryRouter>,
-  //   );
-
-  //   // Verify that the component styles are correct for the default screen size
-  //   const menuButton = screen.getByTestId("menu-box-xs");
-
-  //   expect(menuButton).toBeVisible();
-  // });
 });
