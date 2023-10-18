@@ -63,7 +63,6 @@ const Home2: React.FC = () => {
             decentralized technologies and eager to drive change in the tech
             landscape.
           </Typography>
-
           <Stack
             direction="row"
             alignItems="center"
@@ -75,16 +74,23 @@ const Home2: React.FC = () => {
               href="https://www.cplusplus.com/"
               target="_blank"
               rel="noreferrer"
+              data-testid="cpp-link"
             >
               <CPP />
             </a>
-            <a href="https://www.python.org/" target="_blank" rel="noreferrer">
+            <a
+              href="https://www.python.org/"
+              target="_blank"
+              rel="noreferrer"
+              data-testid="python-link"
+            >
               <Python />
             </a>
             <a
               href="https://www.typescriptlang.org/"
               target="_blank"
               rel="noreferrer"
+              data-testid="typescript-link"
             >
               <TS />
             </a>
@@ -92,16 +98,23 @@ const Home2: React.FC = () => {
               href="https://www.postgresql.org/"
               target="_blank"
               rel="noreferrer"
+              data-testid="postgresql-link"
             >
               <PostgresSQL />
             </a>
-            <a href="https://nodejs.org/" target="_blank" rel="noreferrer">
+            <a
+              href="https://nodejs.org/"
+              target="_blank"
+              rel="noreferrer"
+              data-testid="node-link"
+            >
               <Node fontSize="large" />
             </a>
             <a
               href="https://www.gnu.org/software/bash/"
               target="_blank"
               rel="noreferrer"
+              data-testid="bash-link"
             >
               <TerminalIcon />
             </a>
@@ -141,6 +154,7 @@ const Home2: React.FC = () => {
             target="_blank"
             rel="noreferrer"
             color="primary"
+            data-testid="linkedin-button"
           >
             <LinkedInIcon fontSize="large" />
           </IconButton>
@@ -150,6 +164,7 @@ const Home2: React.FC = () => {
             target="_blank"
             rel="noreferrer"
             color="primary"
+            data-testid="github-button"
           >
             <GitHubIcon fontSize="large" />
           </IconButton>

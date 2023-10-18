@@ -27,7 +27,7 @@ const Portfolio: React.FC = () => {
         </Grid>
         {projects.map((project, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <Card>
+            <Card data-testid={`project-card-${index}`}>
               <CardMedia
                 component="img"
                 height="250"
@@ -51,6 +51,7 @@ const Portfolio: React.FC = () => {
                   href={project.githubLink}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-testid={`github-link-${index}`}
                 >
                   <GitHubIcon sx={{ mr: 1 }} />
                   <Typography variant="body2" component="span">
@@ -64,6 +65,7 @@ const Portfolio: React.FC = () => {
                     href={project.deployedLink}
                     target="_blank"
                     rel="noopener noreferrer"
+                    data-testid={`deployed-link-${index}`}
                   >
                     <WebIcon sx={{ mr: 1 }} />
                     <Typography variant="body2" component="span">

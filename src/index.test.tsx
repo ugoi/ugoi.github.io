@@ -25,7 +25,7 @@ describe("Application root", () => {
     expect(mockRender).toHaveBeenCalledWith(
       <React.StrictMode>
         <App />
-      </React.StrictMode>
+      </React.StrictMode>,
     );
 
     // Cleanup added div.

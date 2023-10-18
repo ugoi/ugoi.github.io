@@ -32,7 +32,6 @@ function HideOnScroll(props: Props) {
   );
 }
 
-
 interface ResponsiveAppBarProps {
   routes: {
     name: string;
