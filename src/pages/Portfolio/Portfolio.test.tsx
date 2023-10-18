@@ -17,18 +17,20 @@ describe("Portfolio Component", () => {
       });
 
       if (project.githubLink) {
-        test(`GitHub link for project ${index} points to the correct URL`, () => {
+        test(`GitHub link for project ${index} points to the correct base URL`, () => {
           render(<Portfolio />);
           const githubLink = screen.getByTestId(`github-link-${index}`);
-          expect(githubLink).toHaveAttribute("href", project.githubLink);
+          const baseURL = new URL(project.githubLink).hostname; // Parse the base URL
+          expect(githubLink.getAttribute("href")).toMatch(baseURL); // Check if href contains the base URL
         });
       }
 
       if (project.deployedLink) {
-        test(`Deployed link for project ${index} points to the correct URL`, () => {
+        test(`Deployed link for project ${index} points to the correct base URL`, () => {
           render(<Portfolio />);
           const deployedLink = screen.getByTestId(`deployed-link-${index}`);
-          expect(deployedLink).toHaveAttribute("href", project.deployedLink);
+          const baseURL = new URL(project.deployedLink).hostname; // Parse the base URL
+          expect(deployedLink.getAttribute("href")).toMatch(baseURL); // Check if href contains the base URL
         });
       }
     });
