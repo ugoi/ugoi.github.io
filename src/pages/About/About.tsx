@@ -3,7 +3,7 @@ import { Container, Typography } from "@mui/material";
 
 function About() {
   return (
-    <Container>
+    <Container data-testid="about-page">
       <Typography variant="h3" gutterBottom>
         About Me
       </Typography>

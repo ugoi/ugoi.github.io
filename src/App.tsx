@@ -26,7 +26,13 @@ function App() {
         <Router>
           <ResponsiveAppBar data-testid="responsive-app-bar" routes={routes} />
           <Routes>
+            {/* Default route that directs to the home page if not provided in routes' array */}
             <Route path="/" element={<Home />} />
+            {/* 
+              Dynamically generate AppBar routes based on the 'routes' array.
+              Each route is linked to a specific component that's dynamically imported 
+              based on the route name. 
+            */}
             {routes.map((route) => (
               <Route
                 key={route.path}
@@ -36,6 +42,7 @@ function App() {
                 )}
               />
             ))}
+            {/* Add additional routes not part of AppBar */}
           </Routes>
         </Router>
       </ThemeProvider>

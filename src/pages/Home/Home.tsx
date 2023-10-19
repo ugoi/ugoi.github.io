@@ -27,7 +27,7 @@ const Home: React.FC = () => {
   });
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" data-testid="home-page">
       <Box
         sx={{
           display: "flex",

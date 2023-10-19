@@ -3,7 +3,7 @@ import { Container, Typography } from "@mui/material";
 
 function Chat() {
   return (
-    <Container>
+    <Container data-testid="chat-page">
       <Typography variant="h3" gutterBottom>
         Chat
       </Typography>

@@ -15,7 +15,7 @@ import WebIcon from "@mui/icons-material/Web";
 
 const Portfolio: React.FC = () => {
   return (
-    <Container data-testid="portfolio">
+    <Container data-testid="portfolio-page">
       <Grid container spacing={3} mt={3}>
         <Grid item xs={12}>
           <Typography variant="h4" gutterBottom>

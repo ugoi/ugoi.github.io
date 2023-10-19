@@ -87,6 +87,7 @@ function ResponsiveAppBar({ routes, ...props }: ResponsiveAppBarProps) {
               </Typography>
 
               <Typography
+                data-testid={`${testIdLogo}-xs`}
                 variant="h5"
                 noWrap
                 component={Link} // Use Link component
@@ -159,6 +160,7 @@ function ResponsiveAppBar({ routes, ...props }: ResponsiveAppBarProps) {
                     .filter((route) => !route.isLogo)
                     .map((route) => (
                       <MenuItem
+                        data-testid={`${route.name.toLowerCase()}-button-xs`}
                         key={route.path}
                         onClick={handleCloseNavMenu}
                         component={Link}
