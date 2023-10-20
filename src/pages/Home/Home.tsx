@@ -57,7 +57,7 @@ const Home: React.FC = () => {
               I'm <span style={{ fontWeight: "bold" }}>Stefan Dukic</span>
             </Typography>
             <Box mt={3}>
-              <StyledTypeWriter>
+              <StyledTypeWriter data-testid="typewriter">
                 <Type />
               </StyledTypeWriter>
             </Box>

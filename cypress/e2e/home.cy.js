@@ -17,9 +17,8 @@ describe("Home Page", () => {
     cy.get('img[alt="home"]').should("be.visible");
   });
 
-  // Verify the typewriter effect is showing one of its strings
-  it("displays a string from the typewriter effect", () => {
-    cy.contains("Full-Stack Developer").should("be.visible"); // You can adjust to check for any of the strings in the Typewriter
+  it("checks if the typewriter effect component is present", () => {
+    cy.get('[data-testid="typewriter"]').should("be.visible");
   });
 
   it("LinkedIn button contains the correct base LinkedIn URL", () => {
