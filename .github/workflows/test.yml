@@ -5,9 +5,8 @@ on:
     branches: [main]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  install:
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,15 +28,28 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Save build folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          if-no-files-found: error
+          path: build/
+
   cypress-run:
+    needs: install
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
+
+      - name: Download the build folder
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: build/
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          build: npm run build
           start: npm start
+          browser: chrome
