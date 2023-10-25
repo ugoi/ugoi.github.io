@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+// import { Container, Typography } from "@mui/material";
+import Cookies from "universal-cookie";
+import { Auth } from "../../components/Auth/Auth";
+import { ChatComponent } from "../../components/ChatComponent/ChatComponent";
+import { auth } from "../../firebase-config";
 import { Container, Typography } from "@mui/material";
+import LogoutComponent from "../../components/LogoutComponent/LogoutComponent";
+
+const cookies = new Cookies();
 
 function Chat() {
+  const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
+  const [isLoaded, setIsLoaded] = useState<boolean>(false); // Initially set to false
+
+  useEffect(() => {
+    console.log("Auth useEffect");
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setIsAuth(true);
+      } else {
+        setIsAuth(false);
+      }
+      setIsLoaded(true); // indicate loading is done regardless of the auth state
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   return (
-    <Container data-testid="chat-page">
-      <Typography variant="h3" gutterBottom>
-        Chat
-      </Typography>
-      <Typography variant="body1">
-        The chat feature is currently under development. Please check back
-        later!
-      </Typography>
-      {/* Once your chat feature is ready, you can integrate it here */}
+    <Container maxWidth="lg" data-testid="chat-page" sx={{ my: 3 }}>
+      {!isAuth && <Auth setIsAuth={setIsAuth} />}
+      {isAuth && !isLoaded && <Typography>Loading...</Typography>}
+      {isAuth && isLoaded && <ChatComponent />}
+      {isAuth && <LogoutComponent setIsAuth={setIsAuth} />}
     </Container>
   );
 }
