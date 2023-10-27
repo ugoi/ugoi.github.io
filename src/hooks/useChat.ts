@@ -1,146 +1,78 @@
-// hooks/useChat.ts
-import { useState, useEffect, useMemo } from "react";
-import { db, auth } from "../firebase-config";
+import { useState, useEffect } from "react";
+import { auth } from "../firebase-config";
+import firebaseService from "../services/FirebaseService";
 import {
-  collection,
-  addDoc,
-  where,
-  serverTimestamp,
-  onSnapshot,
-  query,
-  orderBy,
-  getDocs,
-} from "firebase/firestore";
+  fetchAdminUser,
+  generateConversationsFromMessages,
+} from "./chatHelpers";
 
 export const useChat = () => {
+  // State declarations
   const [currentMessages, setCurrentMessages] = useState<any[]>([]);
   const [activeConversation, setActiveConversation] = useState<string | null>(
     null,
   );
-  const messagesRef = useMemo(() => collection(db, "messages"), []);
   const [adminUser, setAdminUser] = useState<any | null>(null);
   const [conversations, setConversations] = useState<any[]>([]);
 
+  // Effects
   useEffect(() => {
-    if (!auth.currentUser) {
-      console.log("auth.currentUser is undefined");
-      return;
-    }
+    const initializeAdminUser = async () => {
+      const user = await fetchAdminUser();
+      setAdminUser(user);
+    };
 
-    if (!adminUser) {
-      return;
-    }
-
-    console.log("Query Messages useEffect");
-    let queryMessages;
-
-    // Check if the authenticated user is the admin
-    if (auth.currentUser.uid === adminUser.uid) {
-      queryMessages = query(messagesRef, orderBy("createdAt"));
-    } else {
-      queryMessages = query(
-        messagesRef,
-        where("room", "==", `${adminUser?.uid}_${auth.currentUser.uid}`),
-        orderBy("createdAt"),
-      );
-    }
-
-    const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
-      let fetchedMessages: any[] = [];
-      let roomsMap: { [key: string]: any } = {}; // To store unique rooms
-
-      snapshot.forEach((doc) => {
-        const data = doc.data();
-        fetchedMessages.push({ ...data, id: doc.id });
-
-        // If the user is an admin, process the messages to generate conversations
-        if (auth.currentUser?.uid === adminUser.uid) {
-          if (!roomsMap[data.room]) {
-            roomsMap[data.room] = {
-              conversationId: data.room,
-              name: data.userName, // This assumes the user's name is the conversation name
-              lastSenderName: data.userName,
-              info: data.text, // Last message text as the conversation info
-              avatarSrc: data.photoURL,
-              status: "online", // Placeholder, adjust as needed
-            };
-          }
-        }
-      });
-
-      // If the current user is NOT an admin and no conversation with the admin exists
-
-      if (auth.currentUser?.uid !== adminUser.uid) {
-        const defaultRoomId = `${adminUser.uid}_${auth.currentUser?.uid}`;
-        roomsMap[defaultRoomId] = {
-          conversationId: defaultRoomId,
-          name: adminUser.displayName, // Assuming displayName is the admin's name
-          lastSenderName: adminUser.displayName,
-          info: "Start a conversation", // Default text when no messages are present
-          avatarSrc: adminUser.photoURL, // Assuming photoURL is the admin's avatar
-          status: "online",
-        };
-      }
-
-      const conversationValues = Object.values(roomsMap);
-
-      setCurrentMessages(fetchedMessages);
-      setConversations(Object.values(roomsMap));
-      // If there's no active conversation yet, set the first one
-      if (
-        conversationValues.length > 0 &&
-        auth.currentUser?.uid !== adminUser.uid
-      ) {
-        setActiveConversation(conversationValues[0].conversationId);
-      }
-    });
-
-    return () => unsubscribe();
-  }, [messagesRef, adminUser]);
-
-  const fetchAdminUser = async () => {
-    try {
-      const usersRef = collection(db, "users");
-      const adminQuery = query(usersRef, where("role.isAdmin", "==", true));
-
-      const querySnapshot = await getDocs(adminQuery);
-      const adminUsers: any[] = [];
-      querySnapshot.forEach((doc) => {
-        adminUsers.push(doc.data());
-      });
-
-      if (adminUsers.length > 0) {
-        setAdminUser(adminUsers[0]);
-      }
-    } catch (err) {
-      console.error("Error fetching admin user: ", err);
-    }
-  };
-
-  useEffect(() => {
-    fetchAdminUser();
+    initializeAdminUser();
   }, []);
 
-  const sendMessage = async (roomId: string, text: string) => {
-    if (!roomId || !text.trim()) return;
+  useEffect(() => {
+    const handleNewMessages = (messages: any[]) => {
+      if (!auth.currentUser) {
+        console.log("auth.currentUser is undefined");
+        return;
+      }
 
-    if (!auth.currentUser) {
-      console.error("Current user data not available.");
+      setCurrentMessages(messages);
+
+      const generatedConversations = generateConversationsFromMessages(
+        messages,
+        auth.currentUser.uid,
+        adminUser,
+      );
+
+      setConversations(generatedConversations);
+
+      if (
+        generatedConversations.length > 0 &&
+        auth.currentUser?.uid !== adminUser.uid
+      ) {
+        setActiveConversation(generatedConversations[0].conversationId);
+      }
+    };
+
+    if (!auth.currentUser || !adminUser) {
       return;
     }
 
-    await addDoc(messagesRef, {
-      text: text,
-      createdAt: serverTimestamp(),
-      userName: auth.currentUser.displayName,
-      userUid: auth.currentUser.uid,
-      room: roomId,
-      photoURL: auth.currentUser.photoURL,
-    });
+    const unsubscribe = firebaseService.fetchMessages(
+      auth.currentUser.uid,
+      handleNewMessages,
+    );
+
+    return () => unsubscribe();
+  }, [adminUser]);
+
+  // Methods
+  const sendMessage = async (roomId: string, text: string) => {
+    const user = auth.currentUser;
+    if (user) {
+      await firebaseService.sendMessage(roomId, text, user);
+    }
   };
 
   const getUser = () => auth.currentUser;
 
+  // Return values
   return {
     currentMessages,
     conversations,

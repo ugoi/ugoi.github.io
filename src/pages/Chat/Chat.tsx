@@ -14,7 +14,6 @@ function Chat() {
   const [isLoaded, setIsLoaded] = useState<boolean>(false); // Initially set to false
 
   useEffect(() => {
-    console.log("Auth useEffect");
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         setIsAuth(true);
@@ -29,10 +28,10 @@ function Chat() {
 
   return (
     <Container maxWidth="lg" data-testid="chat-page" sx={{ my: 3 }}>
-      {!isAuth && <Auth setIsAuth={setIsAuth} />}
-      {isAuth && !isLoaded && <Typography>Loading...</Typography>}
+      {!isLoaded && <Typography>Loading...</Typography>}
+      {!isAuth && isLoaded && <Auth setIsAuth={setIsAuth} />}
       {isAuth && isLoaded && <ChatComponent />}
-      {isAuth && <LogoutComponent setIsAuth={setIsAuth} />}
+      {isAuth && isLoaded && <LogoutComponent setIsAuth={setIsAuth} />}
     </Container>
   );
 }
