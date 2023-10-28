@@ -12,7 +12,7 @@ interface IChatService {
     onNewMessages: (messages: any[]) => void,
   ): () => void;
 
-  // You can add other methods here as needed
+  deleteApp(): void;
 }
 
 export default IChatService;

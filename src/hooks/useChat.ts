@@ -62,6 +62,19 @@ export const useChat = () => {
     return () => unsubscribe();
   }, [adminUser]);
 
+  // Clean up Firebase app instance before page unload
+  useEffect(() => {
+    const unloadCallback = () => {
+      firebaseService.deleteApp();
+    };
+
+    window.addEventListener("beforeunload", unloadCallback);
+
+    return () => {
+      window.removeEventListener("beforeunload", unloadCallback);
+    };
+  }, []);
+
   // Methods
   const sendMessage = async (roomId: string, text: string) => {
     const user = auth.currentUser;

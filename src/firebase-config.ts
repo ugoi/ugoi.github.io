@@ -31,7 +31,7 @@ isSupported().then((supported) => {
   }
 });
 
-export { analytics };
+export { app, analytics };
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();

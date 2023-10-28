@@ -1,4 +1,4 @@
-import { db } from "../firebase-config";
+import { app, db } from "../firebase-config";
 import {
   collection,
   addDoc,
@@ -10,6 +10,7 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import IChatService from "../interfaces/IChatService";
+import { deleteApp } from "firebase/app";
 
 class FirebaseService implements IChatService {
   private messagesRef = collection(db, "messages");
@@ -104,7 +105,13 @@ class FirebaseService implements IChatService {
       return null;
     }
   }
-  // Implement other methods as needed
+  async deleteApp(): Promise<void> {
+    try {
+      await deleteApp(app);
+    } catch (error) {
+      console.error("Error deleting Firebase app:", error);
+    }
+  }
 }
 
 const firebaseService = new FirebaseService();
