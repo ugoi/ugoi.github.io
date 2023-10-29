@@ -7,7 +7,7 @@ interface IChatService {
    * @param onNewMessages Callback function to handle new messages.
    * @returns A function to unsubscribe from real-time updates.
    */
-  fetchMessages(
+  onMessages(
     userId: string,
     onNewMessages: (messages: any[]) => void,
   ): () => void;

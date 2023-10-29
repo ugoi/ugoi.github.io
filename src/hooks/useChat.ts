@@ -54,7 +54,7 @@ export const useChat = () => {
       return;
     }
 
-    const unsubscribe = firebaseService.fetchMessages(
+    const unsubscribe = firebaseService.onMessages(
       auth.currentUser.uid,
       handleNewMessages,
     );

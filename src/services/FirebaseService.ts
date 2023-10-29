@@ -40,7 +40,7 @@ class FirebaseService implements IChatService {
     }
   }
 
-  fetchMessages(
+  onMessages(
     userId: string,
     onNewMessages: (messages: any[]) => void,
   ): () => void {
