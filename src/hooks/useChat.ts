@@ -26,28 +26,30 @@ export const useChat = () => {
   }, []);
 
   useEffect(() => {
+    console.log("useEffect handleNewMessages")
     const handleNewMessages = (messages: any[]) => {
       if (!auth.currentUser) {
         console.log("auth.currentUser is undefined");
         return;
       }
 
+      console.log("handleNewMessages")
       setCurrentMessages(messages);
 
-      const generatedConversations = generateConversationsFromMessages(
-        messages,
-        auth.currentUser.uid,
-        adminUser,
-      );
+      // const generatedConversations = generateConversationsFromMessages(
+      //   messages,
+      //   auth.currentUser.uid,
+      //   adminUser,
+      // );
 
-      setConversations(generatedConversations);
+      // setConversations(generatedConversations);
 
-      if (
-        generatedConversations.length > 0 &&
-        auth.currentUser?.uid !== adminUser.uid
-      ) {
-        setActiveConversation(generatedConversations[0].conversationId);
-      }
+      // if (
+      //   generatedConversations.length > 0 &&
+      //   auth.currentUser?.uid !== adminUser.uid
+      // ) {
+      //   setActiveConversation(generatedConversations[0].conversationId);
+      // }
     };
 
     if (!auth.currentUser || !adminUser) {
@@ -57,6 +59,34 @@ export const useChat = () => {
     const unsubscribe = firebaseService.onMessages(
       auth.currentUser.uid,
       handleNewMessages,
+    );
+
+    return () => unsubscribe();
+  }, [adminUser]);
+
+  useEffect(() => {
+    const handleNewConversations = (conversations: any[]) => {
+      if (!auth.currentUser) {
+        console.log("auth.currentUser is undefined");
+        return;
+      }
+
+      setConversations(conversations);
+
+      setConversations(conversations);
+
+      if (conversations.length > 0 && auth.currentUser?.uid !== adminUser.uid) {
+        setActiveConversation(conversations[0].conversationId);
+      }
+    };
+
+    if (!auth.currentUser || !adminUser) {
+      return;
+    }
+
+    const unsubscribe = firebaseService.onConversations(
+      auth.currentUser.uid,
+      handleNewConversations,
     );
 
     return () => unsubscribe();
