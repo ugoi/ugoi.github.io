@@ -26,14 +26,17 @@ export const useChat = () => {
   }, []);
 
   useEffect(() => {
-    console.log("useEffect handleNewMessages")
+    console.log("useEffect handleNewMessages");
+    if (!auth.currentUser || !adminUser) {
+      return;
+    }
     const handleNewMessages = (messages: any[]) => {
       if (!auth.currentUser) {
         console.log("auth.currentUser is undefined");
         return;
       }
 
-      console.log("handleNewMessages")
+      console.log("handleNewMessages");
       setCurrentMessages(messages);
 
       // const generatedConversations = generateConversationsFromMessages(
@@ -52,10 +55,6 @@ export const useChat = () => {
       // }
     };
 
-    if (!auth.currentUser || !adminUser) {
-      return;
-    }
-
     const unsubscribe = firebaseService.onMessages(
       auth.currentUser.uid,
       handleNewMessages,
@@ -65,24 +64,22 @@ export const useChat = () => {
   }, [adminUser]);
 
   useEffect(() => {
+    if (!auth.currentUser || !adminUser) {
+      return;
+    }
     const handleNewConversations = (conversations: any[]) => {
       if (!auth.currentUser) {
         console.log("auth.currentUser is undefined");
         return;
       }
 
-      setConversations(conversations);
-
+      console.log("handleNewConversations");
       setConversations(conversations);
 
       if (conversations.length > 0 && auth.currentUser?.uid !== adminUser.uid) {
         setActiveConversation(conversations[0].conversationId);
       }
     };
-
-    if (!auth.currentUser || !adminUser) {
-      return;
-    }
 
     const unsubscribe = firebaseService.onConversations(
       auth.currentUser.uid,

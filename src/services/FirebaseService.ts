@@ -89,59 +89,47 @@ class FirebaseService implements IChatService {
     };
   }
 
+  processFetchedMessages(
+    fetchedMessages: any[],
+    userId: string,
+    adminUser: any,
+    onNewConversations: (conversations: any[]) => void,
+  ) {
+    const generatedConversations = generateConversationsFromMessages(
+      fetchedMessages,
+      userId,
+      adminUser,
+    );
+    onNewConversations(generatedConversations);
+  }
+
   onConversations(
     userId: string,
-    onNewConversations: (messages: any[]) => void,
+    onNewConversations: (conversations: any[]) => void,
   ): () => void {
     if (!userId) {
       console.error("User ID not provided.");
       return () => {};
     }
 
-    let unsubscribe: () => void = () => {};
+    console.log("OnConversation");
 
-    (async () => {
-      const adminUser = await this.fetchAdminUser();
-      if (!adminUser) {
-        console.error("Admin user not found.");
-        return;
-      }
+    return this.onMessages(userId, (fetchedMessages) => {
+      (async () => {
+        const adminUser = await this.fetchAdminUser();
+        if (!adminUser) {
+          console.error("Admin user not found.");
+          return;
+        }
 
-      let queryMessages;
-
-      // Check if the authenticated user is the admin
-      if (userId === adminUser.uid) {
-        queryMessages = query(this.messagesRef, orderBy("createdAt"));
-      } else {
-        queryMessages = query(
-          this.messagesRef,
-          where("room", "==", `${adminUser.uid}_${userId}`),
-          orderBy("createdAt"),
-        );
-      }
-
-      unsubscribe = onSnapshot(queryMessages, (snapshot) => {
-        const fetchedMessages: any[] = [];
-        snapshot.forEach((doc) => {
-          const data = doc.data();
-          fetchedMessages.push({ ...data, id: doc.id });
-        });
-
-        const generatedConversations = generateConversationsFromMessages(
+        this.processFetchedMessages(
           fetchedMessages,
           userId,
           adminUser,
+          onNewConversations,
         );
-
-        onNewConversations(generatedConversations);
-      });
-    })();
-
-    return () => {
-      if (unsubscribe) {
-        unsubscribe();
-      }
-    };
+      })();
+    });
   }
 
   private async fetchAdminUser(): Promise<any | null> {
