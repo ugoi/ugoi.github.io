@@ -15,6 +15,15 @@ import { generateConversationsFromMessages } from "../hooks/chatHelpers";
 
 class FirebaseService implements IChatService {
   private messagesRef = collection(db, "messages");
+  private adminUser: any;
+
+  async initialize(): Promise<void> {
+    this.adminUser = await FirebaseService.fetchAdminUser();
+  }
+
+  getAdminUser(): any {
+    return this.adminUser;
+  }
 
   async sendMessage(roomId: string, text: string, user: any): Promise<void> {
     if (!roomId || !text.trim()) {
@@ -53,7 +62,7 @@ class FirebaseService implements IChatService {
     let unsubscribe: () => void = () => {};
 
     (async () => {
-      const adminUser = await this.fetchAdminUser();
+      const adminUser = this.adminUser;
       if (!adminUser) {
         console.error("Admin user not found.");
         return;
@@ -89,7 +98,7 @@ class FirebaseService implements IChatService {
     };
   }
 
-  processFetchedMessages(
+  private processFetchedMessages(
     fetchedMessages: any[],
     userId: string,
     adminUser: any,
@@ -116,7 +125,7 @@ class FirebaseService implements IChatService {
 
     return this.onMessages(userId, (fetchedMessages) => {
       (async () => {
-        const adminUser = await this.fetchAdminUser();
+        const adminUser = this.adminUser;
         if (!adminUser) {
           console.error("Admin user not found.");
           return;
@@ -132,7 +141,7 @@ class FirebaseService implements IChatService {
     });
   }
 
-  private async fetchAdminUser(): Promise<any | null> {
+  private static async fetchAdminUser(): Promise<any | null> {
     try {
       const usersRef = collection(db, "users");
       const adminQuery = query(usersRef, where("role.isAdmin", "==", true));
@@ -158,5 +167,4 @@ class FirebaseService implements IChatService {
   }
 }
 
-const firebaseService = new FirebaseService();
-export default firebaseService;
+export default FirebaseService;

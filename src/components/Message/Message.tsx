@@ -53,7 +53,9 @@ const Message: React.FC<MessageProps> = ({
               ? theme.palette.primary.dark
               : theme.palette.secondary.dark,
             color: theme.palette.text.primary, // Adjusting text color based on theme
-            borderRadius: isConversant ? "20px 20px 20px 5px" : "20px 20px 5px 20px",
+            borderRadius: isConversant
+              ? "20px 20px 20px 5px"
+              : "20px 20px 5px 20px",
           }}
         >
           <Typography variant="body1">{text}</Typography>
