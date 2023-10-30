@@ -8,18 +8,18 @@ interface MessageListProps {
 }
 
 const MessageList: React.FC<MessageListProps> = ({ children }) => {
-  const listRef = useRef<any>(null);  // Create a ref for the FixedSizeList
+  const listRef = useRef<any>(null); // Create a ref for the FixedSizeList
 
   // Convert children to an array so we can access by index.
   const childrenArray = Children.toArray(children);
 
-  // Function to scroll to the bottom of the list
-  const scrollToBottom = () => {
-    listRef.current?.scrollToItem(childrenArray.length, 'end');
-  };
-
   useEffect(() => {
-    scrollToBottom();  // Scroll to the bottom whenever childrenArray length changes
+    // Function to scroll to the bottom of the list
+    const scrollToBottom = () => {
+      listRef.current?.scrollToItem(childrenArray.length, "end");
+    };
+
+    scrollToBottom(); // Scroll to the bottom whenever childrenArray length changes
   }, [childrenArray]);
 
   const Row = ({ index, style }: any) => {
@@ -31,11 +31,11 @@ const MessageList: React.FC<MessageListProps> = ({ children }) => {
       <AutoSizer>
         {({ width, height }: Size) => (
           <List
-            ref={listRef}  // Pass the ref to the FixedSizeList
+            ref={listRef} // Pass the ref to the FixedSizeList
             height={height}
             width={width}
             itemCount={childrenArray.length}
-            itemSize={80}  // adjust this to an approx height of your message item
+            itemSize={80} // adjust this to an approx height of your message item
           >
             {Row}
           </List>
