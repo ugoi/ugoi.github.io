@@ -39,20 +39,21 @@ export const useChat = () => {
       console.log("handleNewMessages");
       setCurrentMessages(messages);
 
-      // const generatedConversations = generateConversationsFromMessages(
-      //   messages,
-      //   auth.currentUser.uid,
-      //   adminUser,
-      // );
+      // Generate conversations from messages
+      const generatedConversations = generateConversationsFromMessages(
+        messages,
+        auth.currentUser.uid,
+        adminUser,
+      );
 
-      // setConversations(generatedConversations);
+      setConversations(generatedConversations);
 
-      // if (
-      //   generatedConversations.length > 0 &&
-      //   auth.currentUser?.uid !== adminUser.uid
-      // ) {
-      //   setActiveConversation(generatedConversations[0].conversationId);
-      // }
+      if (
+        generatedConversations.length > 0 &&
+        auth.currentUser?.uid !== adminUser.uid
+      ) {
+        setActiveConversation(generatedConversations[0].conversationId);
+      }
     };
 
     const unsubscribe = firebaseService.onMessages(
@@ -63,31 +64,31 @@ export const useChat = () => {
     return () => unsubscribe();
   }, [adminUser]);
 
-  useEffect(() => {
-    if (!auth.currentUser || !adminUser) {
-      return;
-    }
-    const handleNewConversations = (conversations: any[]) => {
-      if (!auth.currentUser) {
-        console.log("auth.currentUser is undefined");
-        return;
-      }
+  // useEffect(() => {
+  //   if (!auth.currentUser || !adminUser) {
+  //     return;
+  //   }
+  //   const handleNewConversations = (conversations: any[]) => {
+  //     if (!auth.currentUser) {
+  //       console.log("auth.currentUser is undefined");
+  //       return;
+  //     }
 
-      console.log("handleNewConversations");
-      setConversations(conversations);
+  //     console.log("handleNewConversations");
+  //     setConversations(conversations);
 
-      if (conversations.length > 0 && auth.currentUser?.uid !== adminUser.uid) {
-        setActiveConversation(conversations[0].conversationId);
-      }
-    };
+  //     if (conversations.length > 0 && auth.currentUser?.uid !== adminUser.uid) {
+  //       setActiveConversation(conversations[0].conversationId);
+  //     }
+  //   };
 
-    const unsubscribe = firebaseService.onConversations(
-      auth.currentUser.uid,
-      handleNewConversations,
-    );
+  //   const unsubscribe = firebaseService.onConversations(
+  //     auth.currentUser.uid,
+  //     handleNewConversations,
+  //   );
 
-    return () => unsubscribe();
-  }, [adminUser]);
+  //   return () => unsubscribe();
+  // }, [adminUser]);
 
   // Clean up Firebase app instance before page unload
   useEffect(() => {
