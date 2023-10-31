@@ -27,7 +27,6 @@ export const Auth: React.FC<AuthProps> = ({ setIsAuth }) => {
       if (!userDoc.exists()) {
         await setDoc(userDocRef, {
           uid: result.user.uid,
-          email: result.user.email,
           displayName: result.user.displayName,
           photoURL: result.user.photoURL,
           role: {

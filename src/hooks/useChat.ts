@@ -37,7 +37,6 @@ export const useChat = () => {
   }, [firebaseService]);
 
   useEffect(() => {
-    console.log("useEffect handleNewMessages");
     if (!auth.currentUser || !adminUser || !firebaseService) {
       return;
     }
@@ -47,7 +46,6 @@ export const useChat = () => {
         return;
       }
 
-      console.log("handleNewMessages");
       setCurrentMessages(messages);
 
       // Generate conversations from messages
