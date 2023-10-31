@@ -1,4 +1,4 @@
-import React, { Children, ReactNode, useEffect, useRef } from "react";
+import React, { Children, ReactNode, useLayoutEffect, useRef } from "react";
 import { FixedSizeList as List } from "react-window";
 import AutoSizer, { Size } from "react-virtualized-auto-sizer";
 import { Box } from "@mui/material";
@@ -13,13 +13,13 @@ const MessageList: React.FC<MessageListProps> = ({ children }) => {
   // Convert children to an array so we can access by index.
   const childrenArray = Children.toArray(children);
 
-  useEffect(() => {
-    // Function to scroll to the bottom of the list
-    const scrollToBottom = () => {
-      listRef.current?.scrollToItem(childrenArray.length, "end");
-    };
-
-    scrollToBottom(); // Scroll to the bottom whenever childrenArray length changes
+  useLayoutEffect(() => {
+    console.log("Scroll TO Bottom");
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        listRef.current?.scrollToItem(childrenArray.length, "end");
+      });
+    });
   }, [childrenArray]);
 
   const Row = ({ index, style }: any) => {

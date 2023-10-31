@@ -1,10 +1,11 @@
 import React from "react";
 import { auth, provider } from "../../firebase-config";
 import { signInWithPopup } from "firebase/auth";
-import "../../styles/Auth.css";
 import Cookies from "universal-cookie";
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase-config"; // Assuming you've exported 'db' from firebase-config
+import { Box } from "@mui/material";
+import GoogleButton from "react-google-button";
 
 const cookies = new Cookies();
 
@@ -44,9 +45,13 @@ export const Auth: React.FC<AuthProps> = ({ setIsAuth }) => {
     }
   };
   return (
-    <div className="auth">
-      <p> Sign In With Google To Continue </p>
-      <button onClick={signInWithGoogle}> Sign In With Google </button>
-    </div>
+    <Box className="auth">
+      <Box display="flex" justifyContent="center" mt={9}>
+        <GoogleButton
+          type="dark" // can be light or dark
+          onClick={signInWithGoogle}
+        />
+      </Box>
+    </Box>
   );
 };

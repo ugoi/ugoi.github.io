@@ -7,7 +7,7 @@ import FirebaseService from "../services/FirebaseService";
 export const useChat = () => {
   // State declarations
   const [currentMessages, setCurrentMessages] = useState<any[]>([]);
-  const [activeConversation, setActiveConversation] = useState<string | null>(
+  const [activeConversation, setActiveConversation] = useState<any | null>(
     null,
   );
   const [adminUser, setAdminUser] = useState<any | null>(null);
@@ -61,7 +61,8 @@ export const useChat = () => {
         generatedConversations.length > 0 &&
         auth.currentUser?.uid !== adminUser.uid
       ) {
-        setActiveConversation(generatedConversations[0].conversationId);
+        // setActiveConversation(generatedConversations[0].conversationId);
+        setActiveConversation(generatedConversations[0]);
       }
     };
 

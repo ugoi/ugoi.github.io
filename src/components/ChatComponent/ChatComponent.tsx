@@ -9,6 +9,10 @@ import ConversationList from "../ConversationList/ConversationList";
 import Conversation from "../Conversation/Conversation";
 import MainContainer from "../MainContainer/MainContainer";
 import { useChat } from "../../hooks/useChat";
+import ConversationHeader from "../ConversationHeader/ConversationHeader";
+import { Avatar, useMediaQuery } from "@mui/material";
+import { useState } from "react";
+import { useTheme } from "@mui/material/styles";
 
 export const ChatComponent = () => {
   const {
@@ -20,19 +24,42 @@ export const ChatComponent = () => {
     getUser,
   } = useChat(); // Use the custom hook here
 
-  const handleSelect = (conversationId: string) => {
-    setActiveConversation(conversationId);
+  // const handleSelect = (conversationId: string) => {
+  //   setActiveConversation(conversationId);
+  // };
+
+  const [showSidebar, setShowSidebar] = useState(true);
+  const theme = useTheme();
+
+  const handleBackClick = () => {
+    setShowSidebar(true);
   };
 
-  const onSend = (text: string) => {
-    if (activeConversation) {
-      sendMessage(activeConversation, text);
+  const handleSelect = (conversationId: string) => {
+    const selectedConversation = conversations.find(
+      (conv) => conv.conversationId === conversationId,
+    );
+    if (selectedConversation) {
+      setActiveConversation(selectedConversation);
+      setShowSidebar(false);
+    } else {
+      console.warn(`No conversation found with id: ${conversationId}`);
     }
   };
 
+  const onSend = (text: string) => {
+    if (activeConversation.conversationId) {
+      sendMessage(activeConversation.conversationId, text);
+    }
+  };
+
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
   return (
     <MainContainer>
-      <Sidebar>
+      <Sidebar
+        sx={{ display: { xs: showSidebar ? "block" : "none", md: "block" } }}
+      >
         <ConversationList>
           {conversations.map((conversation) => (
             <Conversation
@@ -43,16 +70,31 @@ export const ChatComponent = () => {
               info={conversation.info}
               avatarSrc={conversation.avatarSrc}
               status={conversation.status}
-              active={activeConversation === conversation.conversationId}
+              active={
+                activeConversation?.conversationId ===
+                conversation.conversationId
+              }
               onSelect={handleSelect}
             />
           ))}
         </ConversationList>
       </Sidebar>
-      <ChatContainer>
+      <ChatContainer
+        sx={{ display: { xs: showSidebar ? "none" : "block", md: "block" } }}
+      >
+        <ConversationHeader>
+          {!isDesktop && <ConversationHeader.Back onClick={handleBackClick} />}
+          <Avatar src={activeConversation?.avatarSrc} />
+          <ConversationHeader.Content
+            userName={activeConversation?.name}
+            info=""
+          />
+        </ConversationHeader>
         <MessageList>
           {currentMessages
-            .filter((message) => message.room === activeConversation)
+            .filter(
+              (message) => message.room === activeConversation?.conversationId,
+            )
             .map((message) => (
               <Message
                 key={message.id}
