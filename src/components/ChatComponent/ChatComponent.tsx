@@ -80,7 +80,7 @@ export const ChatComponent = () => {
         </ConversationList>
       </Sidebar>
       <ChatContainer
-        sx={{ display: { xs: showSidebar ? "none" : "block", md: "block" } }}
+        sx={{ display: { xs: showSidebar ? "none" : "flex", md: "flex" } }}
       >
         <ConversationHeader>
           {!isDesktop && <ConversationHeader.Back onClick={handleBackClick} />}

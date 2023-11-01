@@ -62,7 +62,7 @@ export const useChat = () => {
         auth.currentUser?.uid !== adminUser.uid
       ) {
         // setActiveConversation(generatedConversations[0].conversationId);
-        setActiveConversation(generatedConversations[0]);
+        // setActiveConversation(generatedConversations[0]);
       }
     };
 

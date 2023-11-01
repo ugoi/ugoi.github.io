@@ -27,7 +27,11 @@ function Chat() {
   }, []);
 
   return (
-    <Container maxWidth="lg" data-testid="chat-page" sx={{ my: 3 }}>
+    <Container
+      maxWidth="lg"
+      data-testid="chat-page"
+      sx={{ height: "100%", display: "flex", flexDirection: "column" }}
+    >
       {!isLoaded && <Typography>Loading...</Typography>}
       {!isAuth && isLoaded && <Auth setIsAuth={setIsAuth} />}
       {isAuth && isLoaded && <ChatComponent />}

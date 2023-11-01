@@ -11,6 +11,8 @@ const ChatContainer: React.FC<ChatContainerProps> = ({ children, sx }) => (
     sx={{
       width: "100%",
       mx: "auto",
+      display: "flex",
+      flexDirection: "column",
       ...sx, // spread the passed sx prop to override the default styles
     }}
     data-testid="chat-container"

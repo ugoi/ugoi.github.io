@@ -11,8 +11,17 @@ const MainContainer: React.FC<MainContainerProps> = ({
   ...props
 }) => {
   return (
-    <Container {...props} maxWidth="xl" data-testid="main-container">
-      <Box display="flex" justifyContent="space-between">
+    <Container
+      {...props}
+      sx={{ height: "100%" }}
+      maxWidth="xl"
+      data-testid="main-container"
+    >
+      <Box
+        display="flex"
+        sx={{ height: "100%" }}
+        justifyContent="space-between"
+      >
         {children}
       </Box>
     </Container>

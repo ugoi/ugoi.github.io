@@ -25,7 +25,7 @@ const MessageList: React.FC<MessageListProps> = ({ children }) => {
   };
 
   return (
-    <Box sx={{ height: "70vh", overflowY: "scroll" }}>
+    <Box sx={{ overflowY: "scroll", flexGrow: 1 }} data-testid="message-list">
       <AutoSizer>
         {({ width, height }: Size) => (
           <List
