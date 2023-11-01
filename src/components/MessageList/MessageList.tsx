@@ -15,11 +15,9 @@ const MessageList: React.FC<MessageListProps> = ({ children }) => {
 
   useLayoutEffect(() => {
     console.log("Scroll TO Bottom");
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        listRef.current?.scrollToItem(childrenArray.length, "end");
-      });
-    });
+    setTimeout(() => {
+      listRef.current?.scrollToItem(childrenArray.length, "end");
+    }, 30);
   }, [childrenArray]);
 
   const Row = ({ index, style }: any) => {
