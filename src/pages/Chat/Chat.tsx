@@ -4,7 +4,7 @@ import Cookies from "universal-cookie";
 import { Auth } from "../../components/Auth/Auth";
 import { ChatComponent } from "../../components/ChatComponent/ChatComponent";
 import { auth } from "../../firebase-config";
-import { Container, Typography, Box } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import LogoutComponent from "../../components/LogoutComponent/LogoutComponent";
 
 const cookies = new Cookies();

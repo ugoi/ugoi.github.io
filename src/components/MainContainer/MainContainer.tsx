@@ -1,5 +1,5 @@
 import React from "react";
-import Container, { ContainerProps } from "@mui/material/Container";
+import { ContainerProps } from "@mui/material/Container";
 import { Box } from "@mui/material";
 
 interface MainContainerProps extends ContainerProps {
