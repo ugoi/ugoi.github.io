@@ -11,7 +11,7 @@ const MainContainer: React.FC<MainContainerProps> = ({
   ...props
 }) => {
   return (
-    <Container
+    <Box
       {...props}
       sx={{ height: "100%" }}
       maxWidth="xl"
@@ -24,7 +24,7 @@ const MainContainer: React.FC<MainContainerProps> = ({
       >
         {children}
       </Box>
-    </Container>
+    </Box>
   );
 };
 

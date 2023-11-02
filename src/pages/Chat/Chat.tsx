@@ -4,7 +4,7 @@ import Cookies from "universal-cookie";
 import { Auth } from "../../components/Auth/Auth";
 import { ChatComponent } from "../../components/ChatComponent/ChatComponent";
 import { auth } from "../../firebase-config";
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, Box } from "@mui/material";
 import LogoutComponent from "../../components/LogoutComponent/LogoutComponent";
 
 const cookies = new Cookies();
@@ -27,8 +27,7 @@ function Chat() {
   }, []);
 
   return (
-    <Container
-      maxWidth="lg"
+    <Box
       data-testid="chat-page"
       sx={{ height: "100%", display: "flex", flexDirection: "column" }}
     >
@@ -36,7 +35,7 @@ function Chat() {
       {!isAuth && isLoaded && <Auth setIsAuth={setIsAuth} />}
       {isAuth && isLoaded && <ChatComponent />}
       {isAuth && isLoaded && <LogoutComponent setIsAuth={setIsAuth} />}
-    </Container>
+    </Box>
   );
 }
 
