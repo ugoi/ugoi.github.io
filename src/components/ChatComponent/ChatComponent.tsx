@@ -33,6 +33,7 @@ export const ChatComponent = () => {
 
   const handleBackClick = () => {
     setShowSidebar(true);
+    setActiveConversation(null);
   };
 
   const handleSelect = (conversationId: string) => {

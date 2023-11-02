@@ -1,9 +1,6 @@
-import { Box, Button, Typography, Paper } from "@mui/material";
+import { Box, Typography, Paper, IconButton } from "@mui/material";
 import React from "react";
-
-interface ConversationHeaderProps {
-  children: React.ReactNode;
-}
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 interface BackProps {
   onClick?: () => void;
@@ -19,9 +16,9 @@ interface ActionsProps {
 }
 
 const Back: React.FC<BackProps> = (props) => (
-  <Button variant="text" onClick={props.onClick}>
-    Back
-  </Button>
+  <IconButton aria-label="delete" onClick={props.onClick}>
+    <ArrowBackIcon />
+  </IconButton>
 );
 
 const Content: React.FC<ContentProps> = (props) => (
@@ -35,23 +32,37 @@ const Content: React.FC<ContentProps> = (props) => (
 
 const Actions: React.FC<ActionsProps> = (props) => <Box>{props.children}</Box>;
 
-const ConversationHeader: React.FC<ConversationHeaderProps> & {
+type ChildrenProps = {
+  children: React.ReactNode;
+};
+
+const ConversationHeader: React.FC<ChildrenProps> & {
   Back: typeof Back;
   Content: typeof Content;
   Actions: typeof Actions;
 } = ({ children }) => {
   return (
     <Paper
-      elevation={3}
       square
       sx={{
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "0.5rem 1rem",
+        padding: 2,
       }}
     >
-      {children}
+      <Box sx={{ display: "flex", alignItems: "center", flex: 1 }}>
+        {React.Children.map(children, (child) => {
+          if (React.isValidElement(child)) {
+            return (
+              <Box sx={{ marginRight: child.type === Back ? "0" : "1rem" }}>
+                {child}
+              </Box>
+            );
+          }
+          return child;
+        })}
+      </Box>
     </Paper>
   );
 };

@@ -23,7 +23,7 @@ const Message: React.FC<MessageProps> = ({
       sx={{
         display: "flex",
         justifyContent: isConversant ? "flex-start" : "flex-end",
-        mb: 2,
+        mr: 1,
       }}
     >
       <Box
@@ -50,8 +50,13 @@ const Message: React.FC<MessageProps> = ({
             ml: isConversant ? 1 : 0,
             mr: isConversant ? 0 : 1,
             backgroundColor: isConversant
-              ? theme.palette.primary.dark
-              : theme.palette.secondary.dark,
+              ? theme.palette.mode === "dark"
+                ? theme.palette.primary.dark
+                : theme.palette.primary.light
+              : theme.palette.mode === "dark"
+              ? theme.palette.secondary.dark
+              : theme.palette.secondary.light,
+
             color: theme.palette.text.primary, // Adjusting text color based on theme
             borderRadius: isConversant
               ? "20px 20px 20px 5px"

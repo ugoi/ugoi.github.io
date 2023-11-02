@@ -56,14 +56,6 @@ export const useChat = () => {
       );
 
       setConversations(generatedConversations);
-
-      if (
-        generatedConversations.length > 0 &&
-        auth.currentUser?.uid !== adminUser.uid
-      ) {
-        // setActiveConversation(generatedConversations[0].conversationId);
-        // setActiveConversation(generatedConversations[0]);
-      }
     };
 
     const unsubscribe = firebaseService.onMessages(

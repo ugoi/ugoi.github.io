@@ -30,7 +30,7 @@ const Conversation: React.FC<ConversationProps> = ({
 
   return (
     <ListItemButton selected={active} onClick={handleClick}>
-      <Avatar src={avatarSrc} alt={name} />
+      <Avatar src={avatarSrc} alt={name} sx={{ mr: 1 }} />
       <ListItemText
         primary={name}
         secondary={`${lastSenderName}: ${info}`}

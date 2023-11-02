@@ -9,7 +9,6 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ children, sx }) => {
   return (
     <Paper
-      elevation={3} // Adjust to your preference
       square
       sx={{
         flex: "1 1 250px", // flex shorthand: grow, shrink, basis
