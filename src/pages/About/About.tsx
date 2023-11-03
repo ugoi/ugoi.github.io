@@ -14,7 +14,7 @@ const url = (name: string, wrap = false) =>
     wrap ? ")" : ""
   }`;
 
-const pages = 7;
+const pages = 10;
 
 const About = () => {
   return (
@@ -66,7 +66,7 @@ const About = () => {
           </Container>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={1} sticky={{ start: 1, end: 1.5 }}>
+        <ParallaxLayer offset={1} sticky={{ start: 1.5, end: 2 }}>
           <Container>
             <Typography variant="h2" component="h2" gutterBottom>
               Frontend Development
@@ -83,7 +83,7 @@ const About = () => {
           </Container>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={2} sticky={{ start: 2, end: 2.5 }}>
+        <ParallaxLayer offset={2} sticky={{ start: 3, end: 3.5 }}>
           <Container>
             <Typography variant="h2" mb={3}>
               Backend Development
@@ -100,7 +100,7 @@ const About = () => {
           </Container>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={3} sticky={{ start: 3, end: 3.5 }}>
+        <ParallaxLayer offset={3} sticky={{ start: 4.5, end: 5 }}>
           <Container>
             <Typography variant="h2" component="h2" gutterBottom>
               API Development
@@ -118,7 +118,7 @@ const About = () => {
           </Container>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={4} sticky={{ start: 4, end: 4.5 }}>
+        <ParallaxLayer offset={4} sticky={{ start: 6, end: 6.5 }}>
           <Container>
             <Typography variant="h2" component="h2" gutterBottom>
               Database Management
@@ -134,7 +134,7 @@ const About = () => {
             </Typography>
           </Container>
         </ParallaxLayer>
-        <ParallaxLayer offset={5} sticky={{ start: 5, end: 5.5 }}>
+        <ParallaxLayer offset={5} sticky={{ start: 7.5, end: 8 }}>
           <Container>
             <Typography variant="h2" component="h2" gutterBottom>
               Continuous Integration
@@ -152,7 +152,7 @@ const About = () => {
         </ParallaxLayer>
         <ParallaxLayer
           offset={6}
-          sticky={{ start: 5.5, end: 6.5 }}
+          sticky={{ start: 9, end: 9.5 }}
           style={{
             display: "flex",
             alignItems: "center",
