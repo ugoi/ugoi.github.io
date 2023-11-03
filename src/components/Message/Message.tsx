@@ -61,9 +61,13 @@ const Message: React.FC<MessageProps> = ({
             borderRadius: isConversant
               ? "20px 20px 20px 5px"
               : "20px 20px 5px 20px",
+            maxWidth: "80%", // Set a max width for the message bubble
+            wordBreak: "break-word", // Ensures that long words do not overflow
           }}
         >
-          <Typography variant="body1">{text}</Typography>
+          <Typography variant="body1" sx={{ whiteSpace: "pre-line" }}>
+            {text}
+          </Typography>
         </Paper>
       </Box>
     </Box>
