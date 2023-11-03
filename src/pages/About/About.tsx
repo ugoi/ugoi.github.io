@@ -44,7 +44,7 @@ const About = () => {
             </Typography>
             <Typography
               sx={{
-                typography: { xs: "h6", md: "h5" },
+                typography: { xs: "body1", md: "h5" },
               }}
             >
               In the digital world, first impressions are vital, and an
@@ -74,7 +74,7 @@ const About = () => {
             </Typography>
             <Typography
               sx={{
-                typography: { xs: "h6", md: "h5" },
+                typography: { xs: "body1", md: "h5" },
               }}
               paragraph
             >
@@ -101,7 +101,7 @@ const About = () => {
             </Typography>
             <Typography
               sx={{
-                typography: { xs: "h6", md: "h5" },
+                typography: { xs: "body1", md: "h5" },
               }}
             >
               Are you in need of an expert to bring your user interfaces to
@@ -128,7 +128,7 @@ const About = () => {
             </Typography>
             <Typography
               sx={{
-                typography: { xs: "h6", md: "h5" },
+                typography: { xs: "body1", md: "h5" },
               }}
               paragraph
             >
@@ -157,7 +157,7 @@ const About = () => {
             </Typography>
             <Typography
               sx={{
-                typography: { xs: "h6", md: "h5" },
+                typography: { xs: "body1", md: "h5" },
               }}
               paragraph
             >
@@ -184,7 +184,7 @@ const About = () => {
             </Typography>
             <Typography
               sx={{
-                typography: { xs: "h6", md: "h5" },
+                typography: { xs: "body1", md: "h5" },
               }}
               paragraph
             >
