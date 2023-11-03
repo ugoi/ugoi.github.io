@@ -23,19 +23,6 @@ const About = () => {
       data-testid="about-page"
     >
       <Parallax pages={pages}>
-        {/* <ParallaxLayer
-          offset={1}
-          speed={1}
-          style={{ backgroundColor: "#805E73" }}
-          sticky={{ start: 1.5, end: 2 }}
-        />
-        <ParallaxLayer
-          offset={2}
-          speed={1}
-          style={{ backgroundColor: "#87BCDE" }}
-          sticky={{ start: 3, end: 3.5 }}
-        /> */}
-
         <ParallaxLayer
           offset={0}
           speed={0}
@@ -47,10 +34,19 @@ const About = () => {
         />
         <ParallaxLayer sticky={{ start: 0, end: 0.5 }}>
           <Container>
-            <Typography variant="h2" mb={3}>
+            <Typography
+              sx={{
+                typography: { xs: "h3", md: "h2" },
+              }}
+              mb={3}
+            >
               Design & Prototyping
             </Typography>
-            <Typography variant="h5">
+            <Typography
+              sx={{
+                typography: { xs: "h6", md: "h5" },
+              }}
+            >
               In the digital world, first impressions are vital, and an
               exceptional design is the key to capturing and retaining your
               audience. I provide comprehensive design services that encompass
@@ -68,10 +64,20 @@ const About = () => {
 
         <ParallaxLayer offset={1} sticky={{ start: 1.5, end: 2 }}>
           <Container>
-            <Typography variant="h2" component="h2" gutterBottom>
+            <Typography
+              sx={{
+                typography: { xs: "h3", md: "h2" },
+              }}
+              gutterBottom
+            >
               Frontend Development
             </Typography>
-            <Typography variant="h5" paragraph>
+            <Typography
+              sx={{
+                typography: { xs: "h6", md: "h5" },
+              }}
+              paragraph
+            >
               Are you in need of an expert to bring your user interfaces to
               life? Look no further. I specialize in crafting intuitive and
               dynamic frontend experiences that captivate and engage. Whether
@@ -85,10 +91,19 @@ const About = () => {
 
         <ParallaxLayer offset={2} sticky={{ start: 3, end: 3.5 }}>
           <Container>
-            <Typography variant="h2" mb={3}>
+            <Typography
+              sx={{
+                typography: { xs: "h3", md: "h2" },
+              }}
+              mb={3}
+            >
               Backend Development
             </Typography>
-            <Typography variant="h5">
+            <Typography
+              sx={{
+                typography: { xs: "h6", md: "h5" },
+              }}
+            >
               Are you in need of an expert to bring your user interfaces to
               life? Look no further. I specialize in crafting intuitive and
               dynamic frontend experiences that captivate and engage. Whether
@@ -102,10 +117,21 @@ const About = () => {
 
         <ParallaxLayer offset={3} sticky={{ start: 4.5, end: 5 }}>
           <Container>
-            <Typography variant="h2" component="h2" gutterBottom>
+            <Typography
+              sx={{
+                typography: { xs: "h3", md: "h2" },
+              }}
+              component="h2"
+              gutterBottom
+            >
               API Development
             </Typography>
-            <Typography variant="h5" paragraph>
+            <Typography
+              sx={{
+                typography: { xs: "h6", md: "h5" },
+              }}
+              paragraph
+            >
               In today’s interconnected digital ecosystem, your applications
               need to communicate seamlessly with other systems and services. I
               am adept at creating and integrating APIs that allow for such
@@ -120,10 +146,21 @@ const About = () => {
 
         <ParallaxLayer offset={4} sticky={{ start: 6, end: 6.5 }}>
           <Container>
-            <Typography variant="h2" component="h2" gutterBottom>
+            <Typography
+              sx={{
+                typography: { xs: "h3", md: "h2" },
+              }}
+              component="h2"
+              gutterBottom
+            >
               Database Management
             </Typography>
-            <Typography variant="h5" paragraph>
+            <Typography
+              sx={{
+                typography: { xs: "h6", md: "h5" },
+              }}
+              paragraph
+            >
               Data is at the heart of every application. I offer my expertise in
               database design and management, ensuring that your data is not
               just stored but is also meaningful and easily retrievable. With a
@@ -136,10 +173,21 @@ const About = () => {
         </ParallaxLayer>
         <ParallaxLayer offset={5} sticky={{ start: 7.5, end: 8 }}>
           <Container>
-            <Typography variant="h2" component="h2" gutterBottom>
+            <Typography
+              sx={{
+                typography: { xs: "h3", md: "h2" },
+              }}
+              component="h2"
+              gutterBottom
+            >
               Continuous Integration
             </Typography>
-            <Typography variant="h5" paragraph>
+            <Typography
+              sx={{
+                typography: { xs: "h6", md: "h5" },
+              }}
+              paragraph
+            >
               The world of technology moves quickly, and your development
               practices should keep pace. I can assist you in implementing
               continuous integration systems, facilitating automated testing,
