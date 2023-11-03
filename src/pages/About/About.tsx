@@ -44,20 +44,17 @@ const About = () => {
             </Typography>
             <Typography
               sx={{
-                typography: { xs: "body1", md: "h5" },
+                typography: { xs: "h6", md: "h5" },
               }}
             >
-              In the digital world, first impressions are vital, and an
-              exceptional design is the key to capturing and retaining your
-              audience. I provide comprehensive design services that encompass
-              crafting visually stunning and user-centric designs, ensuring that
-              your project not only stands out but is also intuitive and
-              engaging. From initial sketches to high-fidelity prototypes, I
-              work collaboratively with you to refine and polish the user
-              experience, allowing us to iterate rapidly and efficiently before
-              a single line of code is written. Let’s create designs that
-              resonate with your audience and set the foundation for your
-              project’s success.
+              In today’s digital landscape, first impressions are critical.
+              Exceptional design is key to engaging and keeping your audience. I
+              offer comprehensive design services, focusing on striking,
+              user-friendly designs to make your project stand out. I
+              collaborate closely with you from early sketches to polished
+              prototypes, streamlining the user experience before coding begins.
+              Let's craft designs that captivate your audience and pave the way
+              for your project's triumph.
             </Typography>
           </Container>
         </ParallaxLayer>
@@ -74,7 +71,7 @@ const About = () => {
             </Typography>
             <Typography
               sx={{
-                typography: { xs: "body1", md: "h5" },
+                typography: { xs: "h6", md: "h5" },
               }}
               paragraph
             >
@@ -101,7 +98,7 @@ const About = () => {
             </Typography>
             <Typography
               sx={{
-                typography: { xs: "body1", md: "h5" },
+                typography: { xs: "h6", md: "h5" },
               }}
             >
               Are you in need of an expert to bring your user interfaces to
@@ -128,7 +125,7 @@ const About = () => {
             </Typography>
             <Typography
               sx={{
-                typography: { xs: "body1", md: "h5" },
+                typography: { xs: "h6", md: "h5" },
               }}
               paragraph
             >
@@ -157,7 +154,7 @@ const About = () => {
             </Typography>
             <Typography
               sx={{
-                typography: { xs: "body1", md: "h5" },
+                typography: { xs: "h6", md: "h5" },
               }}
               paragraph
             >
@@ -184,7 +181,7 @@ const About = () => {
             </Typography>
             <Typography
               sx={{
-                typography: { xs: "body1", md: "h5" },
+                typography: { xs: "h6", md: "h5" },
               }}
               paragraph
             >
