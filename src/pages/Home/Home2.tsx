@@ -1,19 +1,6 @@
 import React from "react";
-import {
-  Grid,
-  Typography,
-  Box,
-  Avatar,
-  Stack,
-  IconButton,
-} from "@mui/material";
+import { Grid, Typography, Box, Avatar, IconButton } from "@mui/material";
 import profilePicture from "../../Assets/profile.jpg";
-import Python from "../../components/Icons/Python";
-import CPP from "../../components/Icons/CPP";
-import TerminalIcon from "@mui/icons-material/Terminal";
-import TS from "../../components/Icons/TS";
-import PostgresSQL from "../../components/Icons/PostgresSQL";
-import Node from "../../components/Icons/Node";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
@@ -37,9 +24,10 @@ const Home2: React.FC = () => {
             sx={{ textAlign: { xs: "center", md: "left" } }}
             paragraph
           >
-            A Data Engineer from <strong>42 Heilbronn</strong>, I've delved deep
-            into C, C++, and TypeScript. My recent endeavors involve real-time
-            data processing in web apps and exploring the realm of Web3.
+            Hello there! I'm a student from 42 Heilbronn with a flair for
+            bringing ideas into the digital world. For me, it all starts with
+            understanding your vision. By gathering your requirements, I ensure
+            that each project is a custom-fit for its intended users.
           </Typography>
 
           <Typography
@@ -47,9 +35,9 @@ const Home2: React.FC = () => {
             sx={{ textAlign: { xs: "center", md: "left" } }}
             paragraph
           >
-            My toolkit includes SQL, Python, Docker, and more. Passionate and
-            ever-curious, I'm shaping the tech future with innovative projects
-            and collaborations.
+            Crafting intuitive designs comes next, where your concept begins to
+            take shape in visual and interactive prototypes. This allows us to
+            iterate and perfect the project's design early in the process.
           </Typography>
 
           <Typography
@@ -57,13 +45,33 @@ const Home2: React.FC = () => {
             sx={{ textAlign: { xs: "center", md: "left" } }}
             paragraph
           >
-            Beyond the tech stack, I believe in the power of continuous learning
-            and collaboration. Currently contributing to a startup in the Web3
-            sector, I'm excited about the transformative potential of
-            decentralized technologies and eager to drive change in the tech
-            landscape.
+            When it comes to bringing these designs to life, it's a symphony of
+            technology. Mobile apps and websites are just the start. Underneath
+            the surface, a robust database is key—it's like the foundation of a
+            building that keeps the data organized and accessible.
           </Typography>
-          <Stack
+          <Typography
+            variant="h6"
+            sx={{ textAlign: { xs: "center", md: "left" } }}
+            paragraph
+          >
+            But that's not all. A seamless front-end for users, a reliable
+            back-end for data processing, APIs for communication between
+            different software parts, and thorough testing to ensure everything
+            works as it should, all come together to create a harmonious and
+            efficient app experience.
+          </Typography>
+          <Typography
+            variant="h6"
+            sx={{ textAlign: { xs: "center", md: "left" } }}
+            paragraph
+          >
+            My approach is to meticulously integrate these technologies,
+            ensuring each piece works in concert to serve the final product.
+            Let's connect and weave your vision into a digital reality that's as
+            functional as it is striking!
+          </Typography>
+          {/* <Stack
             direction="row"
             alignItems="center"
             gap={1}
@@ -118,7 +126,7 @@ const Home2: React.FC = () => {
             >
               <TerminalIcon />
             </a>
-          </Stack>
+          </Stack> */}
         </Grid>
         <Grid
           item
