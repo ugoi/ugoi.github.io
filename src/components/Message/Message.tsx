@@ -30,7 +30,7 @@ const Message: React.FC<MessageProps> = ({
         sx={{
           display: "flex",
           flexDirection: isConversant ? "row" : "row-reverse",
-          alignItems: "center",
+          alignItems: "flex-end",
         }}
       >
         <Avatar
