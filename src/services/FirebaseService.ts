@@ -36,6 +36,9 @@ class FirebaseService implements IChatService {
       return;
     }
 
+    console.log("user");
+    console.log(user);
+
     try {
       await addDoc(this.messagesRef, {
         text: text,
@@ -120,8 +123,6 @@ class FirebaseService implements IChatService {
       console.error("User ID not provided.");
       return () => {};
     }
-
-    console.log("OnConversation");
 
     return this.onMessages(userId, (fetchedMessages) => {
       (async () => {

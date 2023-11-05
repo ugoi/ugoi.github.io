@@ -110,7 +110,7 @@ export const useChat = () => {
 
   // Methods
   const sendMessage = async (roomId: string, text: string) => {
-    if (!firebaseService) {
+    if (!firebaseService || !text) {
       return;
     }
     const user = auth.currentUser;

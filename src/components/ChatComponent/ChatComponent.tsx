@@ -49,7 +49,7 @@ export const ChatComponent = () => {
   };
 
   const onSend = (text: string) => {
-    if (activeConversation.conversationId) {
+    if (activeConversation?.conversationId) {
       sendMessage(activeConversation.conversationId, text);
     }
   };

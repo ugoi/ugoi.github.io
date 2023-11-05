@@ -14,7 +14,6 @@ const MessageList: React.FC<MessageListProps> = ({ children }) => {
   const childrenArray = Children.toArray(children);
 
   useLayoutEffect(() => {
-    console.log("Scroll TO Bottom");
     setTimeout(() => {
       listRef.current?.scrollToItem(childrenArray.length, "end");
     }, 30);
