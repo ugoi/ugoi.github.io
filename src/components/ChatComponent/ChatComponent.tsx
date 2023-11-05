@@ -1,7 +1,6 @@
 import "../../styles/Chat.css";
 import "../../App.css";
 import ChatContainer from "../ChatContainer/ChatContainer";
-import MessageList from "../MessageList/MessageList";
 import MessageInput from "../MessageInput/MessageInput";
 import Message from "../Message/Message";
 import Sidebar from "../Sidebar/Sidebar";
@@ -13,6 +12,7 @@ import ConversationHeader from "../ConversationHeader/ConversationHeader";
 import { Avatar, useMediaQuery } from "@mui/material";
 import { useState } from "react";
 import { useTheme } from "@mui/material/styles";
+import MessagesList from "../MessageList/MessagesListV2";
 
 export const ChatComponent = () => {
   const {
@@ -91,7 +91,7 @@ export const ChatComponent = () => {
             info=""
           />
         </ConversationHeader>
-        <MessageList>
+        {/* <MessageList>
           {currentMessages
             .filter(
               (message) => message.room === activeConversation?.conversationId,
@@ -107,7 +107,25 @@ export const ChatComponent = () => {
                 avatarSrc={message.photoURL}
               />
             ))}
-        </MessageList>
+        </MessageList> */}
+        {/* <Messages messages={transformedMessages}/> */}
+        <MessagesList>
+          {currentMessages
+            .filter(
+              (message) => message.room === activeConversation?.conversationId,
+            )
+            .map((message) => (
+              <Message
+                key={message.id}
+                author={message.userName}
+                text={message.text}
+                direction={
+                  message.userUid === getUser()?.uid ? "outgoing" : "incoming"
+                }
+                avatarSrc={message.photoURL}
+              />
+            ))}
+        </MessagesList>
 
         <MessageInput onSend={onSend} />
       </ChatContainer>
