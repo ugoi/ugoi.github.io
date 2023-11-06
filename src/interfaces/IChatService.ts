@@ -1,5 +1,5 @@
 interface IChatService {
-  sendMessage(roomId: string, text: string, user: any): Promise<void>;
+  sendMessage(roomId: string, text: string): Promise<void>;
 
   /**
    * Fetches messages and listens for real-time updates.
@@ -7,10 +7,7 @@ interface IChatService {
    * @param onNewMessages Callback function to handle new messages.
    * @returns A function to unsubscribe from real-time updates.
    */
-  onMessages(
-    userId: string,
-    onNewMessages: (messages: any[]) => void,
-  ): () => void;
+  onMessages(onNewMessages: (messages: any[]) => void): () => void;
 
   deleteApp(): void;
 }

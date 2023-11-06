@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { auth } from "../firebase-config";
 // import firebaseService from "../services/FirebaseService";
-import { generateConversationsFromMessages } from "./chatHelpers";
 import FirebaseService from "../services/FirebaseService";
+import { Message } from "../services/Types";
 
 export const useChat = () => {
   // State declarations
@@ -40,7 +40,7 @@ export const useChat = () => {
     if (!auth.currentUser || !adminUser || !firebaseService) {
       return;
     }
-    const handleNewMessages = (messages: any[]) => {
+    const handleNewMessages = (messages: Message[]) => {
       if (!auth.currentUser) {
         console.log("auth.currentUser is undefined");
         return;
@@ -49,19 +49,14 @@ export const useChat = () => {
       setCurrentMessages(messages);
 
       // Generate conversations from messages
-      const generatedConversations = generateConversationsFromMessages(
-        messages,
-        auth.currentUser.uid,
-        adminUser,
-      );
-
-      setConversations(generatedConversations);
+      const generatedConversations =
+        firebaseService.generateConversationsFromMessages(messages);
+      if (generatedConversations) {
+        setConversations(generatedConversations);
+      }
     };
 
-    const unsubscribe = firebaseService.onMessages(
-      auth.currentUser.uid,
-      handleNewMessages,
-    );
+    const unsubscribe = firebaseService.onMessages(handleNewMessages);
 
     return () => unsubscribe();
   }, [adminUser, firebaseService]);
@@ -113,10 +108,7 @@ export const useChat = () => {
     if (!firebaseService || !text) {
       return;
     }
-    const user = auth.currentUser;
-    if (user) {
-      await firebaseService.sendMessage(roomId, text, user);
-    }
+    await firebaseService.sendMessage(roomId, text);
   };
 
   const getUser = () => auth.currentUser;

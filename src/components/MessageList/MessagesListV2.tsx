@@ -19,7 +19,7 @@ const MessagesList: React.FC<MessageListProps> = ({ children }) => {
   }, []);
 
   return (
-    <Box sx={{ flexGrow: 1, p: 1}} data-testid="message-list">
+    <Box sx={{ flexGrow: 1, p: 1 }} data-testid="message-list">
       <Virtuoso
         data={childrenArray}
         followOutput={onFollowOutputHandler}
