@@ -6,7 +6,13 @@ import { Message } from "../services/Types";
 
 export const useChat = () => {
   // State declarations
-  const [currentMessages, setCurrentMessages] = useState<any[]>([]);
+  // Use a Map for currentMessages to ensure unique message IDs
+  const [storeCurrentMessages, setStoreCurrentMessages] = useState<
+    Map<string, Message>
+  >(new Map());
+
+  const [currentMessages, setCurrentMessages] = useState<Message[]>([]);
+
   const [activeConversation, setActiveConversation] = useState<any | null>(
     null,
   );
@@ -46,14 +52,29 @@ export const useChat = () => {
         return;
       }
 
-      setCurrentMessages(messages);
+      // Update currentMessages with new messages
+      setStoreCurrentMessages((prevMessages) => {
+        const updatedMessages = new Map(prevMessages);
+        messages.forEach((message) => {
+          updatedMessages.set(message.id, message);
+        });
+        console.log("updatedMessages");
+        console.log(updatedMessages);
 
-      // Generate conversations from messages
-      const generatedConversations =
-        firebaseService.generateConversationsFromMessages(messages);
-      if (generatedConversations) {
-        setConversations(generatedConversations);
-      }
+        // Set currentMessages here using the updated storeCurrentMessages
+        setCurrentMessages(Array.from(updatedMessages.values()));
+
+        // Generate conversations from the updated messages
+        const generatedConversations =
+          firebaseService.generateConversationsFromMessages(
+            Array.from(updatedMessages.values()),
+          );
+        if (generatedConversations) {
+          setConversations(generatedConversations);
+        }
+
+        return updatedMessages;
+      });
     };
 
     const unsubscribe = firebaseService.onMessages(handleNewMessages);

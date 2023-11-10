@@ -65,35 +65,40 @@ class FirebaseService implements IChatService {
 
     let unsubscribe: () => void = () => {};
 
-    (async () => {
-      const adminUser = this.adminUser;
-      if (!adminUser) {
-        console.error("Admin user not found.");
-        return;
-      }
+    const adminUser = this.adminUser;
+    if (!adminUser) {
+      console.error("Admin user not found.");
+      return () => {};
+    }
 
-      let queryMessages;
+    let queryMessages;
 
-      // Check if the authenticated user is the admin
-      if (currentUserUid === adminUser.uid) {
-        queryMessages = query(this.messagesRef, orderBy("createdAt"));
-      } else {
-        queryMessages = query(
-          this.messagesRef,
-          where("room", "==", `${adminUser.uid}_${currentUserUid}`),
-          orderBy("createdAt"),
-        );
-      }
+    // Check if the authenticated user is the admin
+    if (currentUserUid === adminUser.uid) {
+      queryMessages = query(this.messagesRef, orderBy("createdAt"));
+    } else {
+      queryMessages = query(
+        this.messagesRef,
+        where("room", "==", `${adminUser.uid}_${currentUserUid}`),
+        orderBy("createdAt"),
+      );
+    }
 
-      unsubscribe = onSnapshot(queryMessages, (snapshot) => {
-        const fetchedMessages: Message[] = [];
-        snapshot.forEach((doc) => {
-          const data = doc.data();
-          fetchedMessages.push({ ...(data as Message), id: doc.id });
-        });
-        onNewMessages(fetchedMessages);
+    unsubscribe = onSnapshot(queryMessages, (snapshot) => {
+      const fetchedMessages: Message[] = [];
+      snapshot.forEach((doc) => {
+        // Check if the change is from the server
+        // if (!doc.metadata.hasPendingWrites) {
+        const data = doc.data();
+        fetchedMessages.push({ ...(data as Message), id: doc.id });
+        // }
       });
-    })();
+      if (fetchedMessages.length > 0) {
+        console.log("fetchedMessages from server:");
+        console.log(fetchedMessages);
+        onNewMessages(fetchedMessages);
+      }
+    });
 
     return () => {
       if (unsubscribe) {
