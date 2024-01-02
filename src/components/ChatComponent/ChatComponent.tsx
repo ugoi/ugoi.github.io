@@ -13,6 +13,7 @@ import { Avatar, useMediaQuery } from "@mui/material";
 import { useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import MessagesList from "../MessageList/MessagesListV2";
+import { generateUsers } from "../MessageList/data";
 
 export const ChatComponent = () => {
   const {
@@ -22,14 +23,18 @@ export const ChatComponent = () => {
     setActiveConversation,
     sendMessage,
     getUser,
+    lastMessageRef,
   } = useChat(); // Use the custom hook here
-
-  // const handleSelect = (conversationId: string) => {
-  //   setActiveConversation(conversationId);
-  // };
 
   const [showSidebar, setShowSidebar] = useState(true);
   const theme = useTheme();
+
+  const START_INDEX = 10;
+  const INITIAL_ITEM_COUNT = 3;
+
+  const [users, setUsers] = useState(() =>
+    generateUsers(INITIAL_ITEM_COUNT, START_INDEX),
+  );
 
   const handleBackClick = () => {
     setShowSidebar(true);
@@ -91,32 +96,17 @@ export const ChatComponent = () => {
             info=""
           />
         </ConversationHeader>
-        {/* <MessageList>
-          {currentMessages
-            .filter(
-              (message) => message.room === activeConversation?.conversationId,
-            )
-            .map((message) => (
-              <Message
-                key={message.id}
-                author={message.userName}
-                text={message.text}
-                direction={
-                  message.userUid === getUser()?.uid ? "outgoing" : "incoming"
-                }
-                avatarSrc={message.photoURL}
-              />
-            ))}
-        </MessageList> */}
-        {/* <Messages messages={transformedMessages}/> */}
         <MessagesList>
           {currentMessages
             .filter(
               (message) => message.room === activeConversation?.conversationId,
             )
-            .map((message) => (
+            .map((message, index) => (
               <Message
                 key={message.id}
+                ref={index === 0 ? lastMessageRef : null}
+                data-message-id={message.id}
+                data-message-timestamp={message.createdAt} // Add timestamp as a data attribute
                 author={message.userName}
                 text={message.text}
                 direction={
@@ -126,6 +116,20 @@ export const ChatComponent = () => {
               />
             ))}
         </MessagesList>
+        {/* <MessagesList>
+          {currentMessages.map((message, index) => (
+            <Message
+              key={1}
+              ref={index === 0 ? lastMessageRef : null}
+              data-message-id={1}
+              data-message-timestamp={2} // Add timestamp as a data attribute
+              author={"Stefam"}
+              text={"HiXD"}
+              direction={"outgoing"}
+              avatarSrc={message.photoURL}
+            />
+          ))}
+        </MessagesList> */}
 
         <MessageInput onSend={onSend} />
       </ChatContainer>

@@ -8,70 +8,68 @@ interface MessageProps {
   avatarSrc?: string; // <-- Added this line
 }
 
-const Message: React.FC<MessageProps> = ({
-  author,
-  text,
-  direction,
-  avatarSrc,
-}) => {
-  // <-- Added avatarSrc here
-  const theme = useTheme();
-  const isConversant = direction === "incoming";
+const Message = React.forwardRef<HTMLDivElement, MessageProps>(
+  ({ author, text, direction, avatarSrc, ...props }, ref) => {
+    const theme = useTheme();
+    const isConversant = direction === "incoming";
 
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: isConversant ? "flex-start" : "flex-end",
-        mr: 1,
-      }}
-    >
+    return (
       <Box
+        ref={ref} // Attach the ref to the root Box component
+        {...props}
         sx={{
           display: "flex",
-          flexDirection: isConversant ? "row" : "row-reverse",
-          alignItems: "flex-end",
+          justifyContent: isConversant ? "flex-start" : "flex-end",
+          mr: 1,
         }}
       >
-        <Avatar
-          src={avatarSrc} // <-- Added this line
+        <Box
           sx={{
-            bgcolor: isConversant
-              ? theme.palette.primary.main
-              : theme.palette.secondary.main,
+            display: "flex",
+            flexDirection: isConversant ? "row" : "row-reverse",
+            alignItems: "flex-end",
           }}
         >
-          {avatarSrc ? null : isConversant ? author.charAt(0) : "U"}
-        </Avatar>
-        <Paper
-          variant="outlined"
-          sx={{
-            p: 2,
-            ml: isConversant ? 1 : 0,
-            mr: isConversant ? 0 : 1,
-            backgroundColor: isConversant
-              ? theme.palette.mode === "dark"
-                ? theme.palette.primary.dark
-                : theme.palette.primary.light
-              : theme.palette.mode === "dark"
-              ? theme.palette.secondary.dark
-              : theme.palette.secondary.light,
+          <Avatar
+            src={avatarSrc} // <-- Added this line
+            sx={{
+              bgcolor: isConversant
+                ? theme.palette.primary.main
+                : theme.palette.secondary.main,
+            }}
+          >
+            {avatarSrc ? null : isConversant ? author.charAt(0) : "U"}
+          </Avatar>
+          <Paper
+            variant="outlined"
+            sx={{
+              p: 2,
+              ml: isConversant ? 1 : 0,
+              mr: isConversant ? 0 : 1,
+              backgroundColor: isConversant
+                ? theme.palette.mode === "dark"
+                  ? theme.palette.primary.dark
+                  : theme.palette.primary.light
+                : theme.palette.mode === "dark"
+                ? theme.palette.secondary.dark
+                : theme.palette.secondary.light,
 
-            color: theme.palette.text.primary, // Adjusting text color based on theme
-            borderRadius: isConversant
-              ? "20px 20px 20px 5px"
-              : "20px 20px 5px 20px",
-            maxWidth: "80%", // Set a max width for the message bubble
-            wordBreak: "break-word", // Ensures that long words do not overflow
-          }}
-        >
-          <Typography variant="body1" sx={{ whiteSpace: "pre-line" }}>
-            {text}
-          </Typography>
-        </Paper>
+              color: theme.palette.text.primary, // Adjusting text color based on theme
+              borderRadius: isConversant
+                ? "20px 20px 20px 5px"
+                : "20px 20px 5px 20px",
+              maxWidth: "80%", // Set a max width for the message bubble
+              wordBreak: "break-word", // Ensures that long words do not overflow
+            }}
+          >
+            <Typography variant="body1" sx={{ whiteSpace: "pre-line" }}>
+              {text}
+            </Typography>
+          </Paper>
+        </Box>
       </Box>
-    </Box>
-  );
-};
+    );
+  },
+);
 
 export default Message;
