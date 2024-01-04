@@ -10,7 +10,7 @@ import LogoutComponent from "../../components/LogoutComponent/LogoutComponent";
 const cookies = new Cookies();
 
 function Chat() {
-  const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
+  const [isAuth, setIsAuth] = useState(false);
   const [isLoaded, setIsLoaded] = useState<boolean>(false); // Initially set to false
 
   useEffect(() => {
