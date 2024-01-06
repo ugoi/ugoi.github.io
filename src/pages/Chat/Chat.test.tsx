@@ -19,7 +19,7 @@ jest.mock("../../components/LogoutComponent/LogoutComponent.tsx", () => ({
 
 describe("<Chat />", () => {
   test("displays loading text when auth state is changing", async () => {
-    auth.onAuthStateChanged.mockImplementation((callback) => {
+    (auth.onAuthStateChanged as jest.Mock).mockImplementation((callback) => {
       // Simulate a delay before calling the callback
       setTimeout(() => {
         callback(null); // Simulate no user logged in
@@ -33,7 +33,7 @@ describe("<Chat />", () => {
     // Render the component
     render(<Chat />);
     // Check that the loading text is displayed
-    expect(screen.queryByText("Loading...")).toBeInTheDocument();
+    expect(screen.getByText("Loading...")).toBeInTheDocument();
     // // // Then set up the mock to call the callback with a user object (logged in state)
     // // mockOnAuthStateChanged.mockImplementationOnce((callback) => callback({}));
     // Use waitFor to wait for the loading text to disappear
@@ -43,7 +43,7 @@ describe("<Chat />", () => {
     // });
   });
   it("renders Chat component", () => {
-    auth.onAuthStateChanged.mockImplementation((callback) => {
+    (auth.onAuthStateChanged as jest.Mock).mockImplementation((callback) => {
       // Simulate a delay before calling the callback
       callback(false); // Simulate no user logged in
 
