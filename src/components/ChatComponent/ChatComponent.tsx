@@ -116,21 +116,6 @@ export const ChatComponent = () => {
               />
             ))}
         </MessagesList>
-        {/* <MessagesList>
-          {currentMessages.map((message, index) => (
-            <Message
-              key={1}
-              ref={index === 0 ? lastMessageRef : null}
-              data-message-id={1}
-              data-message-timestamp={2} // Add timestamp as a data attribute
-              author={"Stefam"}
-              text={"HiXD"}
-              direction={"outgoing"}
-              avatarSrc={message.photoURL}
-            />
-          ))}
-        </MessagesList> */}
-
         <MessageInput onSend={onSend} />
       </ChatContainer>
     </MainContainer>
