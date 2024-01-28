@@ -2,13 +2,11 @@ import React, {
   useState,
   useEffect,
   useCallback,
-  ReactElement,
   useRef,
 } from "react";
 import { Virtuoso } from "react-virtuoso";
 import { Box } from "@mui/material";
 import { Timestamp } from "firebase/firestore";
-import { consumers } from "stream";
 
 interface MessageListProps {
   children: React.ReactNode;
@@ -91,7 +89,7 @@ const MessagesList: React.FC<MessageListProps> = ({ children }) => {
       setFirstItemIndex((prevIndex) => prevIndex - messagesToPrepend);
       // setEarliestTimestamp(newEarliestTimestamp); // Update the state with the new earliest timestamp
     }
-  }, [children]);
+  }, [children, earliestTimestamp, latestTimestamp]);
 
   const onFollowOutputHandler = useCallback(
     (atBottom: boolean) => {

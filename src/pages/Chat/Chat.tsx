@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
-// import { Container, Typography } from "@mui/material";
-import Cookies from "universal-cookie";
+import { useEffect, useState } from "react";
 import { Auth } from "../../components/Auth/Auth";
 import { ChatComponent } from "../../components/ChatComponent/ChatComponent";
 import { auth } from "../../firebase-config";
 import { Typography, Box } from "@mui/material";
 import LogoutComponent from "../../components/LogoutComponent/LogoutComponent";
-
-const cookies = new Cookies();
 
 function Chat() {
   const [isAuth, setIsAuth] = useState(false);

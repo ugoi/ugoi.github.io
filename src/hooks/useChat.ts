@@ -7,6 +7,7 @@ import { Conversation, Message } from "../services/Types";
 export const useChat = () => {
   // State declarations
   // Use a Map for currentMessages to ensure unique message IDs
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [storeCurrentMessages, setStoreCurrentMessages] = useState<
     Map<string, Message>
   >(new Map());
@@ -21,40 +22,6 @@ export const useChat = () => {
   const [firebaseService, setFirebaseService] =
     useState<FirebaseService | null>(null);
 
-  // Define a new function
-  const createDefaultRoom = async () => {
-    console.log("createDefaultRoom");
-
-    if (!firebaseService) {
-      return;
-    }
-
-    const currentUser = firebaseService.getCurrentUser();
-
-    if (currentUser?.uid == adminUser?.uid) {
-      return;
-    }
-
-    if (!currentUser || !adminUser) {
-      console.error("Current user or admin user data not available.");
-      return;
-    }
-
-    // Generate a unique roomId from the userIds array
-    const userIds = [adminUser.uid, currentUser.uid];
-    // const roomId = userIds.join("_");
-
-    // Check if the room already exists
-
-    // const roomExists = await this.checkRoomExistence(roomId);
-
-    // if (!roomExists) {
-    //   // If the room doesn't exist, create it
-
-    await firebaseService.createRoom(userIds);
-    // }
-  };
-
   useEffect(() => {
     (async () => {
       const service = new FirebaseService();
@@ -67,6 +34,39 @@ export const useChat = () => {
     if (!firebaseService || !adminUser) {
       return;
     }
+    // Define a new function
+    const createDefaultRoom = async () => {
+      console.log("createDefaultRoom");
+
+      if (!firebaseService) {
+        return;
+      }
+
+      const currentUser = firebaseService.getCurrentUser();
+
+      if (currentUser?.uid === adminUser?.uid) {
+        return;
+      }
+
+      if (!currentUser || !adminUser) {
+        console.error("Current user or admin user data not available.");
+        return;
+      }
+
+      // Generate a unique roomId from the userIds array
+      const userIds = [adminUser.uid, currentUser.uid];
+      // const roomId = userIds.join("_");
+
+      // Check if the room already exists
+
+      // const roomExists = await this.checkRoomExistence(roomId);
+
+      // if (!roomExists) {
+      //   // If the room doesn't exist, create it
+
+      await firebaseService.createRoom(userIds);
+      // }
+    };
     createDefaultRoom();
   }, [firebaseService, adminUser]);
 

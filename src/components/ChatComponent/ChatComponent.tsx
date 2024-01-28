@@ -13,7 +13,6 @@ import { Avatar, useMediaQuery } from "@mui/material";
 import { useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import MessagesList from "../MessageList/MessagesListV2";
-import { generateUsers } from "../MessageList/data";
 
 export const ChatComponent = () => {
   const {
@@ -28,13 +27,6 @@ export const ChatComponent = () => {
 
   const [showSidebar, setShowSidebar] = useState(true);
   const theme = useTheme();
-
-  const START_INDEX = 10;
-  const INITIAL_ITEM_COUNT = 3;
-
-  const [users, setUsers] = useState(() =>
-    generateUsers(INITIAL_ITEM_COUNT, START_INDEX),
-  );
 
   const handleBackClick = () => {
     setShowSidebar(true);
