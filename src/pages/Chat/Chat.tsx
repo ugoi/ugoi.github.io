@@ -4,6 +4,7 @@ import { ChatComponent } from "../../components/ChatComponent/ChatComponent";
 import { auth } from "../../firebase-config";
 import { Typography, Box } from "@mui/material";
 import LogoutComponent from "../../components/LogoutComponent/LogoutComponent";
+import MyCometChat from "../../components/CometChat/MyCometChat";
 
 function Chat() {
   const [isAuth, setIsAuth] = useState(false);
@@ -29,7 +30,7 @@ function Chat() {
     >
       {!isLoaded && <Typography>Loading...</Typography>}
       {!isAuth && isLoaded && <Auth setIsAuth={setIsAuth} />}
-      {isAuth && isLoaded && <ChatComponent />}
+      {isAuth && isLoaded && <MyCometChat />}
       {isAuth && isLoaded && <LogoutComponent setIsAuth={setIsAuth} />}
     </Box>
   );
