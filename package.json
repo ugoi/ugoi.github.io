@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@cometchat/chat-sdk-javascript": "^4.0.3",
-    "@cometchat/chat-uikit-react": "^4.1.1",
+    "@cometchat/chat-uikit-react": "^4.2.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.8",
@@ -53,12 +53,6 @@
     "e2e": "npx cypress run --spec 'cypress/e2e/*.cy.js'",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -78,10 +72,11 @@
     "@testing-library/user-event": "^14.5.1",
     "@types/css-mediaquery": "^0.1.2",
     "@types/jest": "^29.5.5",
-    "@types/react-router-dom": "^5.3.3",
     "@types/react-window": "^1.8.7",
     "css-mediaquery": "^0.1.2",
     "cypress": "^13.3.1",
+    "cypress-social-logins": "^1.14.1",
+    "firebase-tools": "^13.2.1",
     "gh-pages": "^6.0.0",
     "prettier": "3.0.3",
     "react-scripts": "^5.0.1"
