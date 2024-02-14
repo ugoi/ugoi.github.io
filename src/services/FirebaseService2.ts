@@ -65,7 +65,7 @@ class FirebaseService2 {
 
       // Simply wait for 5 seconds for customClaims to propagate
       console.log("Waiting 5 seconds for custom claims to propagate...");
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 5 seconds
+      // await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 5 seconds
       console.log("Continuing with user profile completion...");
 
       // Get the user's ID token
