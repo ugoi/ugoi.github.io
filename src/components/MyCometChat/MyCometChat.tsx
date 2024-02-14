@@ -8,6 +8,8 @@ import { CometChatUsersWithMessages } from "@cometchat/chat-uikit-react"; //impo
 import { CometChat } from "@cometchat/chat-sdk-javascript";
 import { FirebaseService2 } from "../../services/FirebaseService2";
 import { useChat } from "../../contexts/ChatContext";
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 type CometChatConstants = {
   APP_ID: string | undefined;
@@ -62,6 +64,8 @@ const MyCometChat: React.FC = () => {
   // const [authToken, setAuthToken] = useState<string>();
   const [firebaseService, setFirebaseService] = useState<any>();
   const { authToken, setAuthToken } = useChat();
+  const theme = useTheme(); // Access the theme context
+  const isMobileView = useMediaQuery(theme.breakpoints.down("sm")); // Check if the current viewport matches a mobile view
 
   useEffect(() => {
     async function initializeFirebase() {
@@ -151,6 +155,7 @@ const MyCometChat: React.FC = () => {
   return (
     <CometChatUsersWithMessages
       usersConfiguration={usersConfiguration as UsersConfiguration}
+      isMobileView={isMobileView}
     />
   );
 };
